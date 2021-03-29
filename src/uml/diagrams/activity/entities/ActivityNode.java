@@ -24,4 +24,9 @@ public abstract class ActivityNode {
 		if (name == null || name.trim().isEmpty())
 			throw new ActivityDiagramRuleException("O nome não pode ser vazio");
 	}
+	
+	@Override
+	public String toString() {
+		return  "<" + this.getClass().getSimpleName() + " name=\"" + this.getName() + "\" />";
+	}
 }
