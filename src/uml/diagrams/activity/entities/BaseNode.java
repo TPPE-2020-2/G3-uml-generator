@@ -3,10 +3,10 @@ package uml.diagrams.activity.entities;
 
 import uml.diagrams.activity.exceptions.ActivityDiagramRuleException;
 
-public abstract class ActivityNode {
+public abstract class BaseNode {
 	protected String name;
 	
-	public ActivityNode(String name) throws ActivityDiagramRuleException {
+	public BaseNode(String name) throws ActivityDiagramRuleException {
 		validateName(name);
 		this.name = name;
 	}

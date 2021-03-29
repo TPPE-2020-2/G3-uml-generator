@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import uml.diagrams.activity.entities.StartNode;
 import uml.diagrams.activity.exceptions.ActivityDiagramRuleException;
 
-class StartNodeTest {
+class StartNodeInvalidNamesValidationTest {
 	private final String NAME = "startNode";
 	private final String ERROR_MESSAGE = "O nome não pode ser vazio";
 
