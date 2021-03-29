@@ -5,17 +5,18 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import uml.diagrams.activity.exceptions.ActivityDiagramRuleException;
+
 class FinalNodeTest {
 	private FinalNode finalNode;
-
-	@BeforeEach
-	void setUp() throws Exception {
-		finalNode = new FinalNode();
-	}
+	
+	private final String NAME = "endNode";
 	
 	@Test
-	void testClassInstance() {
-		assertNotNull(finalNode);
+	void testGetFinalNodeName() throws ActivityDiagramRuleException {
+		finalNode = new FinalNode(NAME);
+		
+		assertEquals(NAME, finalNode.getName());
 	}
 
 }
