@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import uml.diagrams.*;
 
 class StartNodeTest {
+	private final String NAME = "startNode";
 	private StartNode initialNode;
 
 	@BeforeEach
@@ -21,21 +21,17 @@ class StartNodeTest {
 	
 	@Test
 	void testClassInstanceWithName() {
-		String name = "startNode";
-		
-		StartNode initialNode = new StartNode(name);
-		
-		assertNotNull(initialNode);
-		assertEquals(name, initialNode.getName());
+
+		StartNode initialNode = new StartNode(NAME);
+
+		assertEquals(NAME, initialNode.getName());
 	}
 	
 	@Test
-	void testSetClassName() {
-		String name = "startNode";
+	void testSetNodeName() {
 		
-		StartNode initialNode = new StartNode(name);
+		initialNode.setName(NAME);
 		
-		assertNotNull(initialNode);
-		assertEquals(name, initialNode.getName());
+		assertEquals(NAME, initialNode.getName());
 	}
 }
