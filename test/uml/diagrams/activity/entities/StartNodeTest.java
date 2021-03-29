@@ -31,6 +31,32 @@ class StartNodeTest {
 	
 	@Test
 	void testErrorWhenEmptyName() {
-		assertThrows(ActivityDiagramRuleException.class, () -> new StartNode(""));
+		ActivityDiagramRuleException exception = assertThrows(
+				ActivityDiagramRuleException.class,
+				() -> new StartNode(""));
+		
+		assertEquals(exception.getMessage(), "O nome não pode ser vazio");
+	}
+	
+	@Test
+	void testErrorWhenEmptyNameOnSetter() throws ActivityDiagramRuleException {
+		initialNode = new StartNode(NAME);
+		
+		ActivityDiagramRuleException exception = assertThrows(
+				ActivityDiagramRuleException.class,
+				() -> initialNode.setName(""));
+		
+		assertEquals(exception.getMessage(), "O nome não pode ser vazio");
+	}
+	
+	@Test
+	void testErrorWhenNullNameOnSetter() throws ActivityDiagramRuleException {
+		initialNode = new StartNode(NAME);
+		
+		ActivityDiagramRuleException exception = assertThrows(
+				ActivityDiagramRuleException.class,
+				() -> initialNode.setName(null));
+		
+		assertEquals(exception.getMessage(), "O nome não pode ser vazio");
 	}
 }
