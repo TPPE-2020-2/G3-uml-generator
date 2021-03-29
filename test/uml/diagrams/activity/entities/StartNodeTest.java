@@ -14,14 +14,14 @@ class StartNodeTest {
 	private StartNode initialNode;
 	
 	@Test
-	void testGetStartNodeName() {
+	void testGetStartNodeName() throws ActivityDiagramRuleException {
 		initialNode = new StartNode(NAME);
 
 		assertEquals(NAME, initialNode.getName());
 	}
 	
 	@Test
-	void testSetStartNodeName() {
+	void testSetStartNodeName() throws ActivityDiagramRuleException {
 		initialNode = new StartNode(NAME);
 		
 		initialNode.setName(NAME_2);
