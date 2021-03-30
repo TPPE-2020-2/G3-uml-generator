@@ -33,6 +33,12 @@ public class LifelinesGroupCreationTest {
             lifelinesGroup.addLifeline(new Lifeline(lifelineName));
         }
 
-        assertEquals(lifelinesAmount, lifelinesGroup.getLifelines().size());
+        List<Lifeline> lifelines =  lifelinesGroup.getLifelines();
+
+        assertEquals(lifelinesAmount, lifelines.size());
+        
+        for (int i = 0;  i < lifelines.size(); i++) {
+            assertEquals(lifelinesNames.get(i), lifelines.get(i).getName());
+        }
     }
 }
