@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import uml.diagrams.activity.entities.ActivityNode;
+import uml.diagrams.activity.entities.BaseNode;
 import uml.diagrams.activity.entities.DecisionNode;
 import uml.diagrams.activity.entities.FinalNode;
 import uml.diagrams.activity.entities.MergeNode;
@@ -126,14 +127,41 @@ public class ActivityDiagramElements {
 	}
 
 	public void validateDiagramElements() throws ActivityDiagramRuleException {
-		if (startNode == null)
-			throw new ActivityDiagramRuleException("O diagrama precisa ter um StartNode!");
-		
 		if (!hasAtLeastOneActivityNode()) 
 			throw new ActivityDiagramRuleException("O diagrama precisa ter pelo menos um Activity!");
 		
 		if (!hasAtLeastOneFinalNode())
 			throw new ActivityDiagramRuleException("O diagrama precisa ter pelo menos um FinalNode!");
 		
+		if (startNode == null)
+			throw new ActivityDiagramRuleException("O diagrama precisa ter um StartNode!");
+	}
+	
+	@Override
+	public String toString() {
+		String activityString = "";
+		String mergeNodeString = "";
+		String decisionNodeString = "";
+		String finalNodeString = "";
+		
+		for (ActivityNode activityNode: activityNodesList)
+			activityString += "\n" + activityNode.toString();
+		
+		for (DecisionNode decisionNode: decisionNodeList)
+			decisionNodeString += "\n" + decisionNode.toString();
+		
+		for (MergeNode mergeNode: mergeNodeList)
+			mergeNodeString += "\n" + mergeNode.toString();
+		
+		for (FinalNode finalNode: finalNodeList)
+			finalNodeString += "\n" + finalNode.toString();
+		
+		return "<ActivityDiagramElements>" +
+				"\n" + startNode.toString() + 
+				activityString +
+				decisionNodeString +
+				mergeNodeString +
+				finalNodeString +
+			"\n" + "</ActivityDiagramElements>";
 	}
 }
