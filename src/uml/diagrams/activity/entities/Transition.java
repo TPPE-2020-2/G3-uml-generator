@@ -24,7 +24,7 @@ public class Transition {
 	}
 
 	public Float getProb() {
-		return 1.0f;
+		return prob;
 	}
 
 	public void setProb(Float prob) {
