@@ -16,7 +16,8 @@ class LifelineCreationTest {
         return Arrays.asList(new Object[][] {
             {"lifeline"},
             {"test123"},
-            {"a"}
+            {"a"},
+            {"1"}
         });
     }
 

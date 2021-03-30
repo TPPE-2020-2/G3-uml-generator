@@ -8,4 +8,9 @@ public class Lifeline extends BaseElement {
     public Lifeline(String name) throws SequenceDiagramRuleException {
         super(name);
     }
+    
+    @Override
+    public String toString() {
+        return "<Lifeline name=\"" + this.name + "\" />";
+    }
 }
