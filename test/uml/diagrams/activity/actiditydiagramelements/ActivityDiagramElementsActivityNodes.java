@@ -55,7 +55,6 @@ private ActivityDiagramElements activityDiagramElements;
 	}
 	
 	public static Collection<Object[]> activityNodesFind() throws ActivityDiagramRuleException {
-		System.out.println(NODE_1.toString());
 		return Arrays.asList(new Object[][] {
 			{ new ArrayList<ActivityNode>(), NODE_1, null },
 			{ Arrays.asList(NODE_1), NODE_1, NODE_1},
@@ -73,6 +72,29 @@ private ActivityDiagramElements activityDiagramElements;
 		}
 		
 		assertEquals(expectedNode, activityDiagramElements.getActivityNode(nodeToFind.getName()));
+	}
+	
+	public static Collection<Object[]> activityNodesRemoveFind() throws ActivityDiagramRuleException {
+		return Arrays.asList(new Object[][] {
+			{ new ArrayList<ActivityNode>(), NODE_1, new ArrayList<ActivityNode>() },
+			{ Arrays.asList(NODE_1), NODE_1, new ArrayList<ActivityNode>()},
+	        { Arrays.asList(NODE_1, NODE_2), NODE_2, Arrays.asList(NODE_1) },
+	        { Arrays.asList(NODE_1, NODE_2, NODE_3), NODE_3, Arrays.asList(NODE_1, NODE_2)},
+	        { Arrays.asList(NODE_2, NODE_3), NODE_1, Arrays.asList(NODE_2, NODE_3)},
+		});
+	}
+	
+	@ParameterizedTest
+	@MethodSource("activityNodesRemoveFind")
+	void testRemoveActivityNode(List<ActivityNode> nodes, ActivityNode nodeToRemove, List<ActivityNode> expectedList) 
+		throws ActivityDiagramRuleException {
+		for (ActivityNode node : nodes) {
+			activityDiagramElements.addActivityNode(node);			
+		}
+		
+		activityDiagramElements.removeActivityNode(nodeToRemove.getName());
+		
+		assertArrayEquals(expectedList.toArray(), activityDiagramElements.getActivityNodes().toArray());
 	}
 
 }

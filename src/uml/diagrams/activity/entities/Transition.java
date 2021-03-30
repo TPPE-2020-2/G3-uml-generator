@@ -7,7 +7,7 @@ public class Transition {
 	private final String INVALID_PROB_VALUE_ERROR_MESSAGE = "A prob deve ser um valor real entre 0 e 1";
 	
 	private String name;
-	private Float prob;
+	private Float prob = 0.0f;
 	private BaseNode source;
 	private BaseNode target;
 	
