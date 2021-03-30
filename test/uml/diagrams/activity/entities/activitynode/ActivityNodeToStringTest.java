@@ -17,10 +17,10 @@ class ActivityNodeToStringTest {
 
  	public static Collection activityNodeNames() {
 		return Arrays.asList(new Object[][] {
-	        { "name", "<ActivityNode name=\"name\" />" },
-	        { "activityNode", "<ActivityNode name=\"activityNode\" />" },
-	        { "abcd123", "<ActivityNode name=\"abcd123\" />" },
-	        { "22", "<ActivityNode name=\"22\" />" }
+	        { "name", "<Activity name=\"name\" />" },
+	        { "activityNode", "<Activity name=\"activityNode\" />" },
+	        { "abcd123", "<Activity name=\"abcd123\" />" },
+	        { "22", "<Activity name=\"22\" />" }
 		});
 	}
 
