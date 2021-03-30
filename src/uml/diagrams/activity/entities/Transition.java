@@ -47,4 +47,14 @@ public class Transition {
 	public void setTarget(BaseNode target) {
 		this.target = target;
 	}
+	
+	@Override
+	public String toString() {
+		return "<Transition " + 
+				"name=\"" + this.getName() + "\" " + 
+				"prob=\"" + this.prob + "\" " + 
+				"source=\"" + this.getSource().getName() + "\" " +
+				"target=\"" + this.getTarget().getName() + "\" " +
+				"/>";				
+	}
 }
