@@ -10,7 +10,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import uml.diagrams.activity.ActivityDiagramElements;
 import uml.diagrams.activity.entities.StartNode;
+import uml.diagrams.activity.exceptions.ActivityDiagramRuleException;
 
 class ActivityDiagramElementsStartNodeTest {
 
@@ -21,15 +23,16 @@ class ActivityDiagramElementsStartNodeTest {
 		activityDiagramElements = new ActivityDiagramElements();
 	}
 	
-	public static Collection<Object[]> startNodes() {
+	public static Collection<Object[]> startNodes() throws ActivityDiagramRuleException {
 		return Arrays.asList(new Object[][] {
 	        { new StartNode("defaultName"), "defaultName" },
+	        { new StartNode("transition"), "transition" }
 		});
 	}
 	
 	@ParameterizedTest
 	@MethodSource("startNodes")
-	void testStartNodes(StartNode startNode, String nodeName) {
+	void testStartNodes(StartNode startNode, String nodeName) throws ActivityDiagramRuleException {
 		activityDiagramElements.setStartNode(startNode);
 		
 		assertEquals(nodeName, activityDiagramElements.getStartNode().getName());
