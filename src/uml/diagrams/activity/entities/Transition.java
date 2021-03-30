@@ -8,6 +8,7 @@ public class Transition {
 	
 	private String name;
 	private Float prob;
+	private BaseNode source;
 	
 	public void setName(String name) throws ActivityDiagramRuleException {
 		validateNullOrEmpty(name, INVALID_NAME_ERROR_MESSAGE);
@@ -33,5 +34,13 @@ public class Transition {
 			throw new ActivityDiagramRuleException(INVALID_PROB_VALUE_ERROR_MESSAGE);
 			
 		this.prob = prob;
+	}
+	
+	public void setSource(BaseNode source) {
+		this.source = source;
+	}
+	
+	public BaseNode getSource() {
+		return source;
 	}
 }
