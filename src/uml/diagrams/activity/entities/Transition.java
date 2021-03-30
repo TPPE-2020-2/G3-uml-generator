@@ -8,6 +8,6 @@ public class Transition {
 	}
 	
 	public String getName() {
-		return "defaultName";
+		return this.name;
 	}
 }
