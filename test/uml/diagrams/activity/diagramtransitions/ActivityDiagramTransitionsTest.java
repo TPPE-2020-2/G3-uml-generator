@@ -1,6 +1,8 @@
 package uml.diagrams.activity.diagramtransitions;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,6 +19,8 @@ import uml.diagrams.activity.exceptions.ActivityDiagramRuleException;
 
 public class ActivityDiagramTransitionsTest {
 	private ActivityDiagramTransitions diagramTransitions;
+	
+	private final static String MULTIPLE_START_NODE_ERROR_MESSAGE = "Um diagrama de atividades deve ter somente um start node!";
 
 	private final static String NAME = "transition";
 	private final static Float PROB = 0.5f;
@@ -47,5 +51,16 @@ public class ActivityDiagramTransitionsTest {
 		assertDoesNotThrow(() -> {
 			diagramTransitions.addTransition(NAME, PROB, startNode, activityNode);
 		});
+	}
+	
+	@Test
+	public void testErrorTransitionFromStartNodeToActivityMultipleTimes() {
+		
+		ActivityDiagramRuleException exception = assertThrows(ActivityDiagramRuleException.class, () -> {
+			diagramTransitions.addTransition(NAME, PROB, startNode, activityNode);
+			diagramTransitions.addTransition(NAME + "1", PROB, startNode, activityNode);
+		});
+		
+		assertEquals(MULTIPLE_START_NODE_ERROR_MESSAGE, exception.getMessage());
 	}
 }
