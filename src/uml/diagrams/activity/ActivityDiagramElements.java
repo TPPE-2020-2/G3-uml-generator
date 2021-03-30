@@ -1,6 +1,7 @@
 package uml.diagrams.activity;
 
 import uml.diagrams.activity.entities.StartNode;
+import uml.diagrams.activity.exceptions.ActivityDiagramRuleException;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -8,7 +9,6 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import uml.diagrams.activity.entities.ActivityNode;
-import uml.diagrams.activity.entities.BaseNode;
 import uml.diagrams.activity.entities.DecisionNode;
 import uml.diagrams.activity.entities.FinalNode;
 import uml.diagrams.activity.entities.MergeNode;
@@ -19,6 +19,7 @@ public class ActivityDiagramElements {
 	private List<ActivityNode> activityNodesList = new ArrayList<ActivityNode>();
 	private List<FinalNode> finalNodeList = new ArrayList<FinalNode>();
 	private List<DecisionNode> decisionNodeList = new ArrayList<DecisionNode>();
+	private List<MergeNode> mergeNodeList = new ArrayList<MergeNode>();
 	
 	public StartNode getStartNode() {
 		return startNode;
@@ -96,7 +97,43 @@ public class ActivityDiagramElements {
 		}
 	}
 	
-	private boolean hasAlLeastOneActivityNode() {
+	public void addMergeNode(MergeNode node) {
+		this.mergeNodeList.add(node);
+	}
+	
+	public List<MergeNode> getMergeNodes() {
+		return mergeNodeList;
+	}
+	
+	public MergeNode getMergeNode(String nodeName) {
+		return findNode(mergeNodeList, elem -> elem.getName() == nodeName);
+	}
+	
+	public void removeMergeNode(String nodeName) {
+		MergeNode node = findNode(mergeNodeList, elem -> elem.getName() == nodeName);
+		
+		if (node != null) {
+			mergeNodeList.removeIf(elem -> elem.getName() == nodeName);
+		}
+	}
+	
+	private boolean hasAtLeastOneActivityNode() {
 		return activityNodesList.size() > 0;
+	}
+	
+	private boolean hasAtLeastOneFinalNode() {
+		return finalNodeList.size() > 0;
+	}
+
+	public void validateDiagramElements() throws ActivityDiagramRuleException {
+		if (startNode == null)
+			throw new ActivityDiagramRuleException("O diagrama precisa ter um StartNode!");
+		
+		if (!hasAtLeastOneActivityNode()) 
+			throw new ActivityDiagramRuleException("O diagrama precisa ter pelo menos um Activity!");
+		
+		if (!hasAtLeastOneFinalNode())
+			throw new ActivityDiagramRuleException("O diagrama precisa ter pelo menos um FinalNode!");
+		
 	}
 }
