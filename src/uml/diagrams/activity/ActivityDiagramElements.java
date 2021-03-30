@@ -4,6 +4,7 @@ import uml.diagrams.activity.entities.StartNode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import uml.diagrams.activity.entities.ActivityNode;
 
@@ -25,5 +26,17 @@ public class ActivityDiagramElements {
 	
 	public List<ActivityNode> getActivityNodes() {
 		return activityNodesList;
+	}
+	
+	public ActivityNode getActivityNode(String nodeName) {
+		return findActivityNode(elem -> elem.getName() == nodeName);
+	}
+	
+	private ActivityNode findActivityNode(Predicate<ActivityNode> filter) {
+		return activityNodesList
+			.stream()
+			.filter(filter)
+			.findFirst()
+			.orElse(null);
 	}
 }
