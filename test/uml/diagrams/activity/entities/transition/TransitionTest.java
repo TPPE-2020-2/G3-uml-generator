@@ -125,5 +125,32 @@ class TransitionTest {
 		
 		assertEquals(target, transition.getTarget());
 	}
+	
+	public static Collection<Object[]> toStringValues() throws ActivityDiagramRuleException {
+		return Arrays.asList(new Object[][] {
+	        { "teste1", 0.1f, new ActivityNode("source"), new MergeNode("targetMerge"),
+	        	"<Transition name=\"teste1\" prob=\"0.1\" source=\"source\" target=\"targetMerge\" />"},
+	        { "teste2", 0.2f, new ActivityNode("source"), new DecisionNode("targetDecision"),
+	        	"<Transition name=\"teste2\" prob=\"0.2\" source=\"source\" target=\"targetDecision\" />"},
+	        { "teste3", 0.3f, new ActivityNode("source"), new ActivityNode("targetActivity"),
+        		"<Transition name=\"teste3\" prob=\"0.3\" source=\"source\" target=\"targetActivity\" />"},
+	        { "teste4", 0.4f, new ActivityNode("source"), new FinalNode("targetFinal"),
+    			"<Transition name=\"teste4\" prob=\"0.4\" source=\"source\" target=\"targetFinal\" />"},
+	        { "teste5", 0.5f, new StartNode("source"), new ActivityNode("targetActivity"),
+				"<Transition name=\"teste5\" prob=\"0.5\" source=\"source\" target=\"targetActivity\" />"},
+		});
+	}
+	
+	@ParameterizedTest
+	@MethodSource("toStringValues")
+	public void testToStringValues(String name, Float propb, BaseNode source, BaseNode target, String expected) 
+		throws ActivityDiagramRuleException {
+		transition.setName(name);
+		transition.setProb(propb);
+		transition.setSource(source);
+		transition.setTarget(target);
+		
+		assertEquals(expected, transition.toString());
+	}
 
 }
