@@ -10,10 +10,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import uml.diagrams.activity.entities.ActivityNode;
+import uml.diagrams.activity.entities.BaseNode;
+import uml.diagrams.activity.entities.DecisionNode;
+import uml.diagrams.activity.entities.FinalNode;
+import uml.diagrams.activity.entities.MergeNode;
+import uml.diagrams.activity.entities.StartNode;
 import uml.diagrams.activity.entities.Transition;
 import uml.diagrams.activity.exceptions.ActivityDiagramRuleException;
 
-class TransitionGetNameTest {
+class TransitionTest {
 
 	private Transition transition;
 	
@@ -92,6 +98,24 @@ class TransitionGetNameTest {
 				() -> transition.setProb(value));
 		
 		assertEquals(message, exception.getMessage());
+	}
+	
+	public static Collection<BaseNode[]> sourceValues() throws ActivityDiagramRuleException {
+		return Arrays.asList(new BaseNode[][] {
+	        { new MergeNode("source1") },
+	        { new DecisionNode("source2") },
+	        { new ActivityNode("source3") },
+	        { new FinalNode("source4") },
+	        { new StartNode("source5") },
+		});
+	}
+	
+	@ParameterizedTest
+	@MethodSource("sourceValues")
+	public void testGetSources(BaseNode source) throws ActivityDiagramRuleException {
+		transition.setSource(source);
+		
+		assertEquals(source, transition.getSource());
 	}
 
 }
