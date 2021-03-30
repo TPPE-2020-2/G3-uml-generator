@@ -9,20 +9,16 @@ public class Transition {
 	private String name;
 	private Float prob;
 	private BaseNode source;
-	
-	public void setName(String name) throws ActivityDiagramRuleException {
-		validateNullOrEmpty(name, INVALID_NAME_ERROR_MESSAGE);
-		this.name = name;
-	}
+	private BaseNode target;
 	
 	public String getName() {
 		return this.name;
 	}
 	
-	private void validateNullOrEmpty(String value, String errorMessage) 
-			throws ActivityDiagramRuleException {
-		if (value == null || value.trim().isEmpty())
-			throw new ActivityDiagramRuleException(errorMessage);
+	public void setName(String name) throws ActivityDiagramRuleException {
+		if (name == null || name.trim().isEmpty())
+			throw new ActivityDiagramRuleException(INVALID_NAME_ERROR_MESSAGE);
+		this.name = name;
 	}
 
 	public Float getProb() {
@@ -36,11 +32,19 @@ public class Transition {
 		this.prob = prob;
 	}
 	
+	public BaseNode getSource() {
+		return source;
+	}
+	
 	public void setSource(BaseNode source) {
 		this.source = source;
 	}
-	
-	public BaseNode getSource() {
-		return source;
+
+	public BaseNode getTarget() {
+		return target;
+	}
+
+	public void setTarget(BaseNode target) {
+		this.target = target;
 	}
 }
