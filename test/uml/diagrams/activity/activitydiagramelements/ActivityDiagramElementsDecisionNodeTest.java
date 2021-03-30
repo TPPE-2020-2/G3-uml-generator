@@ -1,4 +1,4 @@
-package uml.diagrams.activity.actiditydiagramelements;
+package uml.diagrams.activity.activitydiagramelements;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,15 +14,15 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import uml.diagrams.activity.ActivityDiagramElements;
-import uml.diagrams.activity.entities.FinalNode;
+import uml.diagrams.activity.entities.DecisionNode;
 import uml.diagrams.activity.exceptions.ActivityDiagramRuleException;
 
-public class ActivityDiagramElementsFinalNodeTest {
+public class ActivityDiagramElementsDecisionNodeTest {
 	private ActivityDiagramElements activityDiagramElements;
 
-	private static FinalNode NODE_1;
-	private static FinalNode NODE_2;
-	private static FinalNode NODE_3;
+	private static DecisionNode NODE_1;
+	private static DecisionNode NODE_2;
+	private static DecisionNode NODE_3;
 	
 	@BeforeEach
 	public void setup() throws ActivityDiagramRuleException {
@@ -31,14 +31,14 @@ public class ActivityDiagramElementsFinalNodeTest {
 	
 	@BeforeAll
 	public static void initialSetup() throws ActivityDiagramRuleException {
-		NODE_1 = new FinalNode("node1");
-		NODE_2 = new FinalNode("node2");
-		NODE_3 = new FinalNode("node3");
+		NODE_1 = new DecisionNode("node1");
+		NODE_2 = new DecisionNode("node2");
+		NODE_3 = new DecisionNode("node3");
 	}
 	
-	public static Collection<Object[]> finalNodes() throws ActivityDiagramRuleException {
+	public static Collection<Object[]> decisionNodes() throws ActivityDiagramRuleException {
 		return Arrays.asList(new Object[][] {
-			{ new ArrayList<FinalNode>(), 0 },
+			{ new ArrayList<DecisionNode>(), 0 },
 	        { Arrays.asList(NODE_1),1 },
 	        { Arrays.asList(NODE_1, NODE_2), 2 },
 	        { Arrays.asList(NODE_1, NODE_2, NODE_3), 3 },
@@ -46,18 +46,18 @@ public class ActivityDiagramElementsFinalNodeTest {
 	}
 	
 	@ParameterizedTest
-	@MethodSource("finalNodes")
-	void testAddFinalNodes(List<FinalNode> nodes, int nodeLength) throws ActivityDiagramRuleException {
-		for (FinalNode node : nodes) {
-			activityDiagramElements.addFinalNode(node);			
+	@MethodSource("decisionNodes")
+	void testAddFinalNodes(List<DecisionNode> nodes, int nodeLength) throws ActivityDiagramRuleException {
+		for (DecisionNode node : nodes) {
+			activityDiagramElements.addDecisionNode(node);			
 		}
 		
-		assertEquals(nodeLength, activityDiagramElements.getFinalNodes().size());
+		assertEquals(nodeLength, activityDiagramElements.getDecisionNodes().size());
 	}
 	
 	public static Collection<Object[]> finalNodesFind() throws ActivityDiagramRuleException {
 		return Arrays.asList(new Object[][] {
-			{ new ArrayList<FinalNode>(), NODE_1, null },
+			{ new ArrayList<DecisionNode>(), NODE_1, null },
 			{ Arrays.asList(NODE_1), NODE_1, NODE_1},
 	        { Arrays.asList(NODE_1, NODE_2), NODE_2, NODE_2 },
 	        { Arrays.asList(NODE_1, NODE_2, NODE_3), NODE_3, NODE_3 },
@@ -66,19 +66,19 @@ public class ActivityDiagramElementsFinalNodeTest {
 	
 	@ParameterizedTest
 	@MethodSource("finalNodesFind")
-	void testGetActivityNode(List<FinalNode> nodes, FinalNode nodeToFind, FinalNode expectedNode) 
+	void testGetActivityNode(List<DecisionNode> nodes, DecisionNode nodeToFind, DecisionNode expectedNode) 
 		throws ActivityDiagramRuleException {
-		for (FinalNode node : nodes) {
-			activityDiagramElements.addFinalNode(node);			
+		for (DecisionNode node : nodes) {
+			activityDiagramElements.addDecisionNode(node);			
 		}
 		
-		assertEquals(expectedNode, activityDiagramElements.getFinalNode(nodeToFind.getName()));
+		assertEquals(expectedNode, activityDiagramElements.getDecisionNode(nodeToFind.getName()));
 	}
 	
-	public static Collection<Object[]> finalNodesRemoveFind() throws ActivityDiagramRuleException {
+	public static Collection<Object[]> decisionNodesRemoveFind() throws ActivityDiagramRuleException {
 		return Arrays.asList(new Object[][] {
-			{ new ArrayList<FinalNode>(), NODE_1, new ArrayList<FinalNode>() },
-			{ Arrays.asList(NODE_1), NODE_1, new ArrayList<FinalNode>()},
+			{ new ArrayList<DecisionNode>(), NODE_1, new ArrayList<DecisionNode>() },
+			{ Arrays.asList(NODE_1), NODE_1, new ArrayList<DecisionNode>()},
 	        { Arrays.asList(NODE_1, NODE_2), NODE_2, Arrays.asList(NODE_1) },
 	        { Arrays.asList(NODE_1, NODE_2, NODE_3), NODE_3, Arrays.asList(NODE_1, NODE_2)},
 	        { Arrays.asList(NODE_2, NODE_3), NODE_1, Arrays.asList(NODE_2, NODE_3)},
@@ -86,15 +86,15 @@ public class ActivityDiagramElementsFinalNodeTest {
 	}
 	
 	@ParameterizedTest
-	@MethodSource("finalNodesRemoveFind")
-	void testRemoveActivityNode(List<FinalNode> nodes, FinalNode nodeToRemove, List<FinalNode> expectedList) 
+	@MethodSource("decisionNodesRemoveFind")
+	void testRemoveFinalNode(List<DecisionNode> nodes, DecisionNode nodeToRemove, List<DecisionNode> expectedList) 
 		throws ActivityDiagramRuleException {
-		for (FinalNode node : nodes) {
-			activityDiagramElements.addFinalNode(node);			
+		for (DecisionNode node : nodes) {
+			activityDiagramElements.addDecisionNode(node);			
 		}
 		
-		activityDiagramElements.removeFinalNode(nodeToRemove.getName());
+		activityDiagramElements.removeDecisionNode(nodeToRemove.getName());
 		
-		assertArrayEquals(expectedList.toArray(), activityDiagramElements.getFinalNodes().toArray());
+		assertArrayEquals(expectedList.toArray(), activityDiagramElements.getDecisionNodes().toArray());
 	}
 }

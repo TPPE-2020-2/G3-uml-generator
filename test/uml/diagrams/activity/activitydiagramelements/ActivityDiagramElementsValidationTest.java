@@ -1,4 +1,4 @@
-package uml.diagrams.activity.actiditydiagramelements;
+package uml.diagrams.activity.activitydiagramelements;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
