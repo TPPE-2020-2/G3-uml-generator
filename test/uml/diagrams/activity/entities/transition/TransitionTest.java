@@ -100,7 +100,7 @@ class TransitionTest {
 		assertEquals(message, exception.getMessage());
 	}
 	
-	public static Collection<BaseNode[]> sourceValues() throws ActivityDiagramRuleException {
+	public static Collection<BaseNode[]> baseNodeValues() throws ActivityDiagramRuleException {
 		return Arrays.asList(new BaseNode[][] {
 	        { new MergeNode("source1") },
 	        { new DecisionNode("source2") },
@@ -111,11 +111,19 @@ class TransitionTest {
 	}
 	
 	@ParameterizedTest
-	@MethodSource("sourceValues")
+	@MethodSource("baseNodeValues")
 	public void testGetSources(BaseNode source) throws ActivityDiagramRuleException {
 		transition.setSource(source);
 		
 		assertEquals(source, transition.getSource());
+	}
+	
+	@ParameterizedTest
+	@MethodSource("baseNodeValues")
+	public void testGetTargets(BaseNode target) throws ActivityDiagramRuleException {
+		transition.setTarget(target);
+		
+		assertEquals(target, transition.getTarget());
 	}
 
 }
