@@ -24,7 +24,8 @@ class TransitionGetNameTest {
 	public static Collection transitionNames() {
 		return Arrays.asList(new Object[][] {
 	        { "defaultName" },
-	        { "transition" }
+	        { "transition" },
+	        { "triangulacao" } 
 		});
 	}
 	
