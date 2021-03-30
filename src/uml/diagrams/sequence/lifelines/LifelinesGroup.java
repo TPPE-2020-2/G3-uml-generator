@@ -18,4 +18,16 @@ public class LifelinesGroup {
     public List<Lifeline> getLifelines() {
         return lifelines;
     }
+    
+    @Override
+    public String toString() {
+        String representantion = "<Lifelines>";
+        for (Lifeline lifeline : lifelines) {
+            representantion += lifeline.toString();
+        }
+        representantion += "</Lifelines>";
+        
+        return representantion;
+    }
+    
 }
