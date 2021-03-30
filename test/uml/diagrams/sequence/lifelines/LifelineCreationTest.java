@@ -8,22 +8,23 @@ import java.util.Collection;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
+
 class LifelineCreationTest {
 
     public static Collection<Object[]> lifelineParams() {
         return Arrays.asList(new Object[][] {
-            {"lifeline", "lifeline" },
-            {"test123", "test123"},
-            {"", ""},
-            {null, ""}
+            {"lifeline"},
+            {"test123"},
+            {"a"}
         });
     }
 
     @ParameterizedTest
     @MethodSource("lifelineParams")
-    void testCreateLifeline(String name, String expectedName) {
+    void testCreateLifeline(String name) throws SequenceDiagramRuleException {
         Lifeline lifeline = new Lifeline(name);
         
-        assertEquals(expectedName, lifeline.getName());
+        assertEquals(name, lifeline.getName());
     }
 }
