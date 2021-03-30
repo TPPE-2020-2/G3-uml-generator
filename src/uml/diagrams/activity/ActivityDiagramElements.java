@@ -7,11 +7,14 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import uml.diagrams.activity.entities.ActivityNode;
+import uml.diagrams.activity.entities.FinalNode;
 
 public class ActivityDiagramElements {
+	
 	private StartNode startNode;
 	private List<ActivityNode> activityNodesList = new ArrayList<ActivityNode>();
-
+	private List<FinalNode> finalNodeList = new ArrayList<FinalNode>();
+	
 	public StartNode getStartNode() {
 		return startNode;
 	}
@@ -32,11 +35,33 @@ public class ActivityDiagramElements {
 		return findActivityNode(elem -> elem.getName() == nodeName);
 	}
 	
+	public void removeActivityNode(String nodeName) {
+		ActivityNode node = findActivityNode(elem -> elem.getName() == nodeName);
+		
+		if (node != null) {
+			activityNodesList.removeIf(elem -> elem.getName() == nodeName);
+		}
+	}
+	
 	private ActivityNode findActivityNode(Predicate<ActivityNode> filter) {
 		return activityNodesList
 			.stream()
 			.filter(filter)
 			.findFirst()
 			.orElse(null);
+	}
+	
+	public void addFinalNode(FinalNode node) {
+		this.finalNodeList.add(node);
+	}
+	
+	public List<FinalNode> getFinalNodes() {
+		return finalNodeList;
+	}
+	
+	
+	
+	private boolean hasAlLeastOneActivityNode() {
+		return activityNodesList.size() > 0;
 	}
 }
