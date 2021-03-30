@@ -67,10 +67,31 @@ class TransitionGetNameTest {
 	
 	@ParameterizedTest
 	@MethodSource("probValues")
-	public void testGetProbValues(Float value) {
+	public void testGetProbValues(Float value) throws ActivityDiagramRuleException {
 		transition.setProb(value);
 		
 		assertEquals(value, transition.getProb());
+	}
+	
+	public static Collection<Float[]> probInvalidValues() {
+		return Arrays.asList(new Float[][] {
+	        { 1.1f },
+	        { -0.1f },
+	        { 10.5f },
+	        { -10.5f },
+		});
+	}
+	
+	@ParameterizedTest
+	@MethodSource("probInvalidValues")
+	public void testSetProbInvalidValues(Float value) {
+		final String message = "A prob deve ser um valor real entre 0 e 1";
+		
+		ActivityDiagramRuleException exception = assertThrows(
+				ActivityDiagramRuleException.class, 
+				() -> transition.setProb(value));
+		
+		assertEquals(message, exception.getMessage());
 	}
 
 }
