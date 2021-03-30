@@ -26,7 +26,8 @@ class ActivityDiagramElementsStartNodeTest {
 	public static Collection<Object[]> startNodes() throws ActivityDiagramRuleException {
 		return Arrays.asList(new Object[][] {
 	        { new StartNode("defaultName"), "defaultName" },
-	        { new StartNode("transition"), "transition" }
+	        { new StartNode("transition"), "transition" },
+	        { new StartNode("triangulacao"), "triangulacao"  } 
 		});
 	}
 	
