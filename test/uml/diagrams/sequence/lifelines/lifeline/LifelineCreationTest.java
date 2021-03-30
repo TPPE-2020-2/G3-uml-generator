@@ -1,4 +1,4 @@
-package uml.diagrams.sequence.lifelines;
+package uml.diagrams.sequence.lifelines.lifeline;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,6 +9,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
+import uml.diagrams.sequence.lifelines.Lifeline;
 
 class LifelineCreationTest {
 
