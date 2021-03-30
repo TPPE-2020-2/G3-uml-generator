@@ -22,8 +22,8 @@ class TransitionGetNameTest {
 		transition = new Transition();
 	}
 	
-	public static Collection transitionNames() {
-		return Arrays.asList(new Object[][] {
+	public static Collection<String[]> transitionNames() {
+		return Arrays.asList(new String[][] {
 	        { "defaultName" },
 	        { "transition" },
 	        { "triangulacao" } 
@@ -38,8 +38,8 @@ class TransitionGetNameTest {
 		assertEquals(name, transition.getName());
 	}
 	
-	public static Collection emptyValues() {
-		return Arrays.asList(new Object[][] {
+	public static Collection<String[]> emptyValues() {
+		return Arrays.asList(new String[][] {
 	        { "" },
 	        { null }
 		});
@@ -55,6 +55,20 @@ class TransitionGetNameTest {
 				() -> transition.setName(name));
 		
 		assertEquals(message, exception.getMessage());
+	}
+	
+	public static Collection<Float[]> probValues() {
+		return Arrays.asList(new Float[][] {
+	        { 1.0f }
+		});
+	}
+	
+	@ParameterizedTest
+	@MethodSource("probValues")
+	public void testGetProbValues(Float value) {
+		transition.setProb(value);
+		
+		assertEquals(value, transition.getProb());
 	}
 
 }
