@@ -20,7 +20,7 @@ public class SequenceDiagramsInvalidNamesTest {
             {null, false}
         });
     }
-    
+
     @ParameterizedTest
     @MethodSource("sequenceDiagramsName")
     void testErrorCreateSequenceDiagrams(String name, Boolean guardCondition) {

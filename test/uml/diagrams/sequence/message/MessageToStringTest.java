@@ -33,7 +33,7 @@ public class MessageToStringTest {
     }
     
     @ParameterizedTest
-    @MethodSource("messageParms")
+    @MethodSource("messageParams")
     void testGetMessageToString(String name, Float prob, String sourceStr,
             String targetStr, String expectedString) throws SequenceDiagramRuleException {
     	Lifeline source = new Lifeline(sourceStr);
