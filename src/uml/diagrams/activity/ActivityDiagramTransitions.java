@@ -21,6 +21,10 @@ public class ActivityDiagramTransitions {
 		transitionList = new ArrayList<Transition>();
 	}
 	
+	public List<Transition> getTransitions() {
+		return transitionList;
+	}
+	
 	public void addTransition(String name, float prob, BaseNode source, BaseNode target) throws ActivityDiagramRuleException {
 		Transition transition = new Transition();
 		
@@ -32,6 +36,10 @@ public class ActivityDiagramTransitions {
 		validateTransitionInsert(source, target);
 		
 		transitionList.add(transition);
+	}
+	
+	public void removeTransition(String name) {
+		transitionList.removeIf(elem -> elem.getName() == name);
 	}
 	
 	private void validateMultipleStartNodes(BaseNode source, BaseNode target) throws ActivityDiagramRuleException {
@@ -93,5 +101,17 @@ public class ActivityDiagramTransitions {
 			.filter(filter)
 			.findFirst()
 			.orElse(null);
+	}
+	
+	@Override
+	public String toString() {
+		String transitionsString = "";
+		
+		for (Transition temp : transitionList)
+			transitionsString += "\n" + temp.toString();
+		
+		return "<ActivityDiagramTransitions>" +
+					transitionsString +
+				"\n" + "</ActivityDiagramTransitions>";
 	}
 }
