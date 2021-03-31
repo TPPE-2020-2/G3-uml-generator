@@ -22,6 +22,14 @@ public class Message {
 		this.name = name;
 	}
 	
+	public Message(String name, Float prob, Lifeline source, Lifeline target) {
+		super();
+		this.name = name;
+		this.prob = prob;
+		this.source = source;
+		this.target = target;
+	}
+
 	public Float getProb() {
 		return prob;
 	}

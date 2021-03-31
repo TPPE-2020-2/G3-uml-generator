@@ -10,6 +10,12 @@ public class SequenceDiagrams {
 	private Boolean guardCondition;
 	
 
+	public SequenceDiagrams(String name, Boolean guardCondition) {
+		super();
+		this.name = name;
+		this.guardCondition = guardCondition;
+	}
+
 	public String getName() {
 		return name;
 	}

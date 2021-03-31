@@ -15,17 +15,17 @@ import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
 public class SequenceDiagramsInvalidNamesTest {
     public static Collection<Object[]> sequenceDiagramsName() {
         return Arrays.asList(new Object[][] {
-            {""},
-            {null}
+        	{"", true},
+            {null, false}
         });
     }
     
     @ParameterizedTest
     @MethodSource("sequenceDiagramsName")
-    void testErrorCreateSequenceDiagrams(String name) {
+    void testErrorCreateSequenceDiagrams(String name, Boolean guardCondition) {
         SequenceDiagramRuleException exception = assertThrows(
                 SequenceDiagramRuleException.class,
-                () -> new SequenceDiagrams(name));
+                () -> new SequenceDiagrams(name, guardCondition));
         
         assertEquals(exception.getMessage(), BaseElement.NAME_ERROR);
     }
