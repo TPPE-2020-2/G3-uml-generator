@@ -31,9 +31,9 @@ public class ActivityDiagramTransitions {
 		transitionList.add(transition);
 	}
 	
-	public void addTransition(String name, float prob, BaseNode source, BaseNode target) throws ActivityDiagramRuleException {
+	public <T extends BaseNode> void addTransition(String name, float prob, T source, T target) throws ActivityDiagramRuleException {
 		Transition transition = new Transition();
-		
+
 		transition.setName(name);
 		transition.setProb(prob);
 		transition.setSource(source);
