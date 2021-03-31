@@ -14,18 +14,19 @@ import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
 public class SequenceDiagramsCreation {
     public static Collection<Object[]> sequenceDiagramsName() {
         return Arrays.asList(new Object[][] {
-            {"lifeline"},
-            {"test123"},
-            {"a"},
-            {"1"}
+            {"lifeline", true},
+            {"test123", false},
+            {"a", true},
+            {"1", false}
         });
     }
 
     @ParameterizedTest
     @MethodSource("sequenceDiagramsName")
-    void testCreateSequenceDiagrams(String name) throws SequenceDiagramRuleException {
-        SequenceDiagrams diagram = new SequenceDiagrams(name);
+    void testCreateSequenceDiagrams(String name,Boolean guardCondition) throws SequenceDiagramRuleException {
+        SequenceDiagrams diagram = new SequenceDiagrams(name, guardCondition);
         
         assertEquals(name, diagram.getName());
+        assertEquals(guardCondition, diagram.getGuardCondition());
     }
 }
