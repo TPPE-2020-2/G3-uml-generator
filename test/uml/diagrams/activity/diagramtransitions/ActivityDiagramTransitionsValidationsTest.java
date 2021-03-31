@@ -22,7 +22,7 @@ import uml.diagrams.activity.entities.MergeNode;
 import uml.diagrams.activity.entities.StartNode;
 import uml.diagrams.activity.exceptions.ActivityDiagramRuleException;
 
-public class ActivityDiagramTransitionsTest {
+public class ActivityDiagramTransitionsValidationsTest {
 	private ActivityDiagramTransitions diagramTransitions;
 	
 	private final static String MULTIPLE_START_NODE_ERROR_MESSAGE = "Um diagrama de atividades deve ter somente um start node!";
@@ -57,16 +57,10 @@ public class ActivityDiagramTransitionsTest {
 		diagramTransitions = new ActivityDiagramTransitions();
 	}
 	
-	@Test
-	public void testTransitionFromStartNodeToActivity() {
-		
-		assertDoesNotThrow(() -> {
-			diagramTransitions.addTransition(NAME, PROB, startNode, activityNode);
-		});
-	}
-	
 	public static Collection validScenarios() throws ActivityDiagramRuleException {
 		return Arrays.asList(new Object[][] {
+			{ Arrays.asList(
+					new TransitionTempHolder(NAME, PROB, startNode, activityNode))},
 	        { Arrays.asList(
 	        		new TransitionTempHolder(NAME, PROB, activityNode, new ActivityNode("activity2")))},
 	        { Arrays.asList(
@@ -77,17 +71,17 @@ public class ActivityDiagramTransitionsTest {
 	        		new TransitionTempHolder(NAME, PROB, activityNode, finalNode))},
 	        { Arrays.asList(
 	        		new TransitionTempHolder(NAME, PROB, decisionNode, activityNode),
-	        		new TransitionTempHolder(NAME, PROB, decisionNode, new ActivityNode("activity2")),
-	        		new TransitionTempHolder(NAME, PROB, decisionNode, mergeNode))},
+	        		new TransitionTempHolder(NAME + "2", PROB, decisionNode, new ActivityNode("activity2")),
+	        		new TransitionTempHolder(NAME + "3", PROB, decisionNode, mergeNode))},
 	        { Arrays.asList(
 	        		new TransitionTempHolder(NAME, PROB, activityNode, mergeNode),
-	        		new TransitionTempHolder(NAME, PROB, new ActivityNode("activity2"), mergeNode),
-	        		new TransitionTempHolder(NAME, PROB, decisionNode, mergeNode))},
+	        		new TransitionTempHolder(NAME + "2", PROB, new ActivityNode("activity2"), mergeNode),
+	        		new TransitionTempHolder(NAME + "3", PROB, decisionNode, mergeNode))},
 	        { Arrays.asList(
 	        		new TransitionTempHolder(NAME, PROB, activityNode, finalNode))},
 	        { Arrays.asList(
 	        		new TransitionTempHolder(NAME, PROB, activityNode, finalNode),
-	        		new TransitionTempHolder(NAME, PROB, mergeNode, finalNode))},
+	        		new TransitionTempHolder(NAME + "2", PROB, mergeNode, finalNode))},
 		});
 	}
 	
@@ -105,7 +99,7 @@ public class ActivityDiagramTransitionsTest {
 		return Arrays.asList(new Object[][] {
 	        { Arrays.asList(
 	        		new TransitionTempHolder(NAME, PROB, startNode, activityNode),
-	        		new TransitionTempHolder(NAME + "1", PROB, startNode, activityNode)),
+	        		new TransitionTempHolder(NAME + "2", PROB, startNode, activityNode)),
 	        	MULTIPLE_START_NODE_ERROR_MESSAGE},
 	        { Arrays.asList(
 	        		new TransitionTempHolder(NAME, PROB, startNode, decisionNode)),
@@ -118,18 +112,18 @@ public class ActivityDiagramTransitionsTest {
     				NULL_VALUES_ERROR_MESSAGE},
 	        { Arrays.asList(
 	        		new TransitionTempHolder(NAME, PROB, activityNode, new ActivityNode("activity2")),
-					new TransitionTempHolder(NAME, PROB, activityNode, new ActivityNode("activity3"))),
+					new TransitionTempHolder(NAME + "2", PROB, activityNode, new ActivityNode("activity3"))),
 					MULTIPLE_ACTIVITY_TRANSITIONS_ERROR_MESSAGE},
 	        { Arrays.asList(
 	        		new TransitionTempHolder(NAME, PROB, activityNode, startNode)),
 					CONNECTING_WITH_START_NODE_ERROR_MESSAGE},
 	        { Arrays.asList(
 	        		new TransitionTempHolder(NAME, PROB, activityNode, decisionNode),
-	        		new TransitionTempHolder(NAME, PROB, new ActivityNode("activity2"), decisionNode)),
+	        		new TransitionTempHolder(NAME + "2", PROB, new ActivityNode("activity2"), decisionNode)),
 					MULTIPLE_DECISION_NODE_TARGETS},
 	        { Arrays.asList(
 	        		new TransitionTempHolder(NAME, PROB, mergeNode, activityNode),
-	        		new TransitionTempHolder(NAME, PROB, mergeNode, new ActivityNode("activity2"))),
+	        		new TransitionTempHolder(NAME + "2", PROB, mergeNode, new ActivityNode("activity2"))),
 					MULTIPLE_MERGE_NODE_TARGETS},	        
 	        { Arrays.asList(
 	        		new TransitionTempHolder(NAME, PROB, finalNode, activityNode)),
