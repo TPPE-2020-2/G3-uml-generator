@@ -15,21 +15,31 @@ import uml.diagrams.sequence.sequencediagram.SequenceDiagram;
 
 public class MessageToStringTest {
 	
-    public static Collection<Object[]> messageParms() {
+    public static Collection<Object[]> messageParams() {
         return Arrays.asList(new Object[][] {
-            {"name", 0.5f, 
-            	"<Message name=\"name\" prob=\"0.5\" source=\"origem\" target=\"destino\" />"},
+            {
+                "name", 0.5f, "origem", "destino",
+            	"<Message name=\"name\" prob=\"0.5\" source=\"origem\" target=\"destino\" />"
+            },
+            {
+                "name", 1f, "node1", "node2",
+                "<Message name=\"name\" prob=\"1.0\" source=\"node1\" target=\"node2\" />"
+            },
+            {
+                "name", 0f, "node1", "node2",
+                "<Message name=\"name\" prob=\"0.0\" source=\"node1\" target=\"node2\" />"
+            }
         });
     }
     
     @ParameterizedTest
     @MethodSource("messageParms")
-    void testGetMessageToString(String name, Float prob, String expectedString) throws SequenceDiagramRuleException {
-    	Lifeline source = new Lifeline("origem");
-    	Lifeline target = new Lifeline("destino");
-    	Message diagram = new Message(name, prob, source, target);
+    void testGetMessageToString(String name, Float prob, String sourceStr,
+            String targetStr, String expectedString) throws SequenceDiagramRuleException {
+    	Lifeline source = new Lifeline(sourceStr);
+    	Lifeline target = new Lifeline(targetStr);
+    	Message message = new Message(name, prob, source, target);
 
-        assertEquals(expectedString, diagram.toString());
+        assertEquals(expectedString, message.toString());
     }
-
 }
