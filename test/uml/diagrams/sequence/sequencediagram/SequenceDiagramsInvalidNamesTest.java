@@ -28,9 +28,6 @@ public class SequenceDiagramsInvalidNamesTest {
                 SequenceDiagramRuleException.class,
                 () -> new SequenceDiagram(name, guardCondition));
         
-        String message = exception.getMessage();
-        
         assertEquals(exception.getMessage(), BaseElement.NAME_ERROR);
     }
-
 }

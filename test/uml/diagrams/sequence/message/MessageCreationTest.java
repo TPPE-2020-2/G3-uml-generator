@@ -8,6 +8,7 @@ import java.util.Collection;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import uml.diagrams.sequence.exceptions.MessageFormatException;
 import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
 import uml.diagrams.sequence.lifelines.Lifeline;
 
@@ -30,7 +31,7 @@ class MessageCreationTest {
     @ParameterizedTest
     @MethodSource("messageParms")
     void testGetMessageToString(String name, Float prob, String sourceStr,
-            String targetStr) throws SequenceDiagramRuleException {
+            String targetStr) throws SequenceDiagramRuleException, MessageFormatException {
         Lifeline source = new Lifeline(sourceStr);
         Lifeline target = new Lifeline(targetStr);
         Message message = new Message(name, prob, source, target);
