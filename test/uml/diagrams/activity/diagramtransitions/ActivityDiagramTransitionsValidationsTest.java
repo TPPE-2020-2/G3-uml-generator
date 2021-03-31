@@ -100,7 +100,7 @@ public class ActivityDiagramTransitionsValidationsTest {
 	        { Arrays.asList(
 	        		new TransitionTempHolder(NAME, PROB, startNode, activityNode),
 	        		new TransitionTempHolder(NAME + "2", PROB, startNode, activityNode)),
-	        	MULTIPLE_START_NODE_ERROR_MESSAGE},
+	        		MULTIPLE_START_NODE_ERROR_MESSAGE},
 	        { Arrays.asList(
 	        		new TransitionTempHolder(NAME, PROB, startNode, decisionNode)),
 	        		START_NODE_WITH_NON_ACTIVITY_TARGET_ERROR_MESSAGE},

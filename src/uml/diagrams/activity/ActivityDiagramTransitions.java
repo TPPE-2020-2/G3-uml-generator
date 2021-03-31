@@ -25,6 +25,12 @@ public class ActivityDiagramTransitions {
 		return transitionList;
 	}
 	
+	public void addTransition(Transition transition) throws ActivityDiagramRuleException {
+		validateTransitionInsert(transition.getSource(), transition.getTarget());
+		
+		transitionList.add(transition);
+	}
+	
 	public void addTransition(String name, float prob, BaseNode source, BaseNode target) throws ActivityDiagramRuleException {
 		Transition transition = new Transition();
 		
