@@ -1,4 +1,4 @@
-package uml.diagrams.sequence;
+package uml.diagrams.sequence.sequencediagram;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -24,7 +24,7 @@ public class SequenceDiagramsCreation {
     @ParameterizedTest
     @MethodSource("sequenceDiagramsName")
     void testCreateSequenceDiagrams(String name,Boolean guardCondition) throws SequenceDiagramRuleException {
-        SequenceDiagrams diagram = new SequenceDiagrams(name, guardCondition);
+        SequenceDiagram diagram = new SequenceDiagram(name, guardCondition);
         
         assertEquals(name, diagram.getName());
         assertEquals(guardCondition, diagram.getGuardCondition());

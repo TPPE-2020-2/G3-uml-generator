@@ -1,4 +1,4 @@
-package uml.diagrams.sequence.entities.message;
+package uml.diagrams.sequence.message;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -8,10 +8,10 @@ import java.util.Collection;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import uml.diagrams.sequence.SequenceDiagrams;
-import uml.diagrams.sequence.entities.Message;
 import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
 import uml.diagrams.sequence.lifelines.Lifeline;
+import uml.diagrams.sequence.message.Message;
+import uml.diagrams.sequence.sequencediagram.SequenceDiagram;
 
 public class MessageToStringTest {
 	

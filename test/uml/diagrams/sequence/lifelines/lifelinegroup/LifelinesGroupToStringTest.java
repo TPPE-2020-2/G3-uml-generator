@@ -1,4 +1,4 @@
-package uml.diagrams.sequence.lifelines.lifelinesgroups;
+package uml.diagrams.sequence.lifelines.lifelinegroup;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

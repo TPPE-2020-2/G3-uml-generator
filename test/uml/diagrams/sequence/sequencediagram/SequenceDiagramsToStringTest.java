@@ -1,4 +1,4 @@
-package uml.diagrams.sequence;
+package uml.diagrams.sequence.sequencediagram;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -31,7 +31,7 @@ public class SequenceDiagramsToStringTest {
     @ParameterizedTest
     @MethodSource("sequenceDiagramsNameTrue")
     void testGetSequenceDiagramsToStringTrue(String name, String expectedString) throws SequenceDiagramRuleException {
-        SequenceDiagrams diagram = new SequenceDiagrams(name, true);
+        SequenceDiagram diagram = new SequenceDiagram(name, true);
 
         assertEquals(expectedString, diagram.toString());
     }
@@ -39,7 +39,7 @@ public class SequenceDiagramsToStringTest {
     @ParameterizedTest
     @MethodSource("sequenceDiagramsNameFalse")
     void testGetSequenceDiagramsToStringFalse(String name, String expectedString) throws SequenceDiagramRuleException {
-        SequenceDiagrams diagram = new SequenceDiagrams(name, false);
+        SequenceDiagram diagram = new SequenceDiagram(name, false);
 
         assertEquals(expectedString, diagram.toString());
     }

@@ -1,10 +1,10 @@
-package uml.diagrams.sequence.entities;
+package uml.diagrams.sequence.message;
 
-import uml.diagrams.sequence.lifelines.Lifeline;
 import uml.diagrams.sequence.exceptions.*;
+import uml.diagrams.sequence.lifelines.Lifeline;
 
 public class Message {
-	private final String INVALID_NAME_ERROR_MESSAGE = "O nome não pode ser vazio ou nulo";
+	private final String INVALID_NAME_ERROR_MESSAGE = "O nome nï¿½o pode ser vazio ou nulo";
 	private final String INVALID_PROB_VALUE_ERROR_MESSAGE = "A prob deve ser um valor real entre 0 e 1";
 	
 	private String name;

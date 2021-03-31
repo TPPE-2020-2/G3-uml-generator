@@ -17,6 +17,12 @@ public class BaseElement {
     public String getName() {
         return name;
     }
+
+    public void setName(String name) throws SequenceDiagramRuleException {
+        if (name == null || name.trim().isEmpty())
+            throw new SequenceDiagramRuleException(NAME_ERROR);
+        this.name = name;
+    }
     
     private void validateName(String name) throws SequenceDiagramRuleException {
         if (name == null || name.trim().isEmpty()) {            

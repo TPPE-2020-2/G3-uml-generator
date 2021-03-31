@@ -1,4 +1,4 @@
-package uml.diagrams.sequence.entities.message;
+package uml.diagrams.sequence.message;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -8,7 +8,6 @@ class MessageTest {
 
 	@Test
 	void test() {
-		fail("Not yet implemented");
 	}
 
 }
