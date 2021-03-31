@@ -21,6 +21,7 @@ public class ActivityDiagramTransitionsTest {
 	private ActivityDiagramTransitions diagramTransitions;
 	
 	private final static String MULTIPLE_START_NODE_ERROR_MESSAGE = "Um diagrama de atividades deve ter somente um start node!";
+	private final static String START_NODE_WITH_NON_ACTIVITY_TARGET_ERROR_MESSAGE = "Um diagrama de atividades deve se conectar somente à um activity!";
 
 	private final static String NAME = "transition";
 	private final static Float PROB = 0.5f;
@@ -62,5 +63,15 @@ public class ActivityDiagramTransitionsTest {
 		});
 		
 		assertEquals(MULTIPLE_START_NODE_ERROR_MESSAGE, exception.getMessage());
+	}
+	
+	@Test
+	public void testErrorTransitionFromStartNodeToNonActivityNode() {
+		
+		ActivityDiagramRuleException exception = assertThrows(ActivityDiagramRuleException.class, () -> {
+			diagramTransitions.addTransition(NAME, PROB, startNode, decisionNode);
+		});
+		
+		assertEquals(START_NODE_WITH_NON_ACTIVITY_TARGET_ERROR_MESSAGE, exception.getMessage());
 	}
 }
