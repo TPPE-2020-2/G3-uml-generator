@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
 
-public class SequenceDiagramsToStringTest {
+public class SequenceDiagramToStringTest {
 	
     public static Collection<Object[]>sequenceDiagramsNameTrue() {
         return Arrays.asList(new Object[][] {
@@ -19,7 +19,7 @@ public class SequenceDiagramsToStringTest {
             {"a", "<SequenceDiagram name=\"a\" guardCondition=\"true\" />"},
         });
     }
-    
+
     public static Collection<Object[]>sequenceDiagramsNameFalse() {
         return Arrays.asList(new Object[][] {
             {"name", "<SequenceDiagram name=\"name\" guardCondition=\"false\" />"},
@@ -27,7 +27,7 @@ public class SequenceDiagramsToStringTest {
             {"a", "<SequenceDiagram name=\"a\" guardCondition=\"false\" />"},
         });
     }
-    
+
     @ParameterizedTest
     @MethodSource("sequenceDiagramsNameTrue")
     void testGetSequenceDiagramsToStringTrue(String name, String expectedString) throws SequenceDiagramRuleException {

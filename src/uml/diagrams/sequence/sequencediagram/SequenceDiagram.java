@@ -4,14 +4,14 @@ import uml.diagrams.sequence.BaseElement;
 import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
 
 public class SequenceDiagram extends BaseElement {
-	private final String INVALID_GUARD_CONDITION_VALUE_ERROR_MESSAGE = "A condição de guarda não pode ser vazia ou nula";
-	
+	final static String INVALID_GUARD_CONDITION_VALUE_ERROR_MESSAGE = "A condição de guarda não pode ser vazia ou nula";
 	private Boolean guardCondition;
 	
 
 	public SequenceDiagram(String name, Boolean guardCondition) throws SequenceDiagramRuleException {
 		super(name);
-		this.guardCondition = guardCondition;
+
+		setGuardCondition(guardCondition);
 	}
 
 	public Boolean getGuardCondition() {
