@@ -1,6 +1,5 @@
-package uml.diagrams.activity.diagramtransitions;
+package uml.diagrams.activity;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
@@ -9,11 +8,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import uml.diagrams.activity.ActivityDiagramTransitions;
+import uml.diagrams.activity.diagramtransitions.TransitionTempHolder;
 import uml.diagrams.activity.entities.ActivityNode;
 import uml.diagrams.activity.entities.DecisionNode;
 import uml.diagrams.activity.entities.FinalNode;
@@ -22,8 +20,9 @@ import uml.diagrams.activity.entities.StartNode;
 import uml.diagrams.activity.entities.Transition;
 import uml.diagrams.activity.exceptions.ActivityDiagramRuleException;
 
-public class ActivityDiagramTransitionsGetTest {
-	private ActivityDiagramTransitions diagramTransitions;
+public class ActivityDiagramTransitionsTest {
+	private ActivityDiagram activityDiagram;
+	private final String DEFAULT_NAME = "default";
 	
 	private final static String NAME = "transition";
 	private final static Float PROB = 0.5f;
@@ -43,14 +42,15 @@ public class ActivityDiagramTransitionsGetTest {
 		finalNode = new FinalNode("final");
 	}
 	
-	@BeforeEach
-	public void setup() {
-		diagramTransitions = new ActivityDiagramTransitions();
-	}
 	
-	public static Collection validScenarios() throws ActivityDiagramRuleException {
+	@BeforeEach
+	public void setup() throws ActivityDiagramRuleException {
+		activityDiagram = new ActivityDiagram(DEFAULT_NAME);
+	}
+
+	public static Collection transitionsValues() throws ActivityDiagramRuleException {
 		return Arrays.asList(new Object[][] {
-	        { Arrays.asList(
+			{ Arrays.asList(
 	        		new TransitionTempHolder(NAME, PROB, activityNode, finalNode)), 1},
 	        { Arrays.asList(
 	        		new TransitionTempHolder(NAME, PROB, activityNode, finalNode),
@@ -63,25 +63,31 @@ public class ActivityDiagramTransitionsGetTest {
 	}
 	
 	@ParameterizedTest
-	@MethodSource("validScenarios")
-	public void testGetTransitions(List<TransitionTempHolder> values, int count) throws ActivityDiagramRuleException {
-		for (TransitionTempHolder transition : values) 
-			diagramTransitions.addTransition(transition.getName(), transition.getProb(), transition.getSource(), transition.getTarget());
-		
-		assertEquals(count, diagramTransitions.getTransitions().size());
+	@MethodSource("transitionsValues")
+	void testGetActivityNodeName(List<TransitionTempHolder> transitions, int expectedTransitionsNumber)
+			throws ActivityDiagramRuleException {
+		for (TransitionTempHolder temp : transitions) {
+			Transition tempTransition = new Transition();
+			
+			tempTransition.setName(temp.getName());
+			tempTransition.setProb(temp.getProb());
+			tempTransition.setSource(temp.getSource());
+			tempTransition.setTarget(temp.getTarget());
+			
+			activityDiagram.addTransition(tempTransition);
+		}
+
+		assertEquals(expectedTransitionsNumber, activityDiagram.getActivityDiagramTransitions().getTransitions().size());
 	}
 	
-	@Test
-	public void testAddTransitionOverload() throws ActivityDiagramRuleException {
-		Transition tempTransition = new Transition();
-		
-		tempTransition.setName(NAME);
-		tempTransition.setSource(activityNode);
-		tempTransition.setProb(PROB);
-		tempTransition.setTarget(decisionNode);
-		
-		diagramTransitions.addTransition(tempTransition);
-		
-		assertEquals(1, diagramTransitions.getTransitions().size());
+	@ParameterizedTest
+	@MethodSource("transitionsValues")
+	void testGetActivityNodeNameOverLoad(List<TransitionTempHolder> transitions, int expectedTransitionsNumber) 
+			throws ActivityDiagramRuleException {
+		for (TransitionTempHolder temp : transitions) {			
+			activityDiagram.addTransition(temp.getName(), temp.getProb(), temp.getSource(), temp.getTarget());
+		}
+
+		assertEquals(expectedTransitionsNumber, activityDiagram.getActivityDiagramTransitions().getTransitions().size());
 	}
 }
