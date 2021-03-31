@@ -50,32 +50,32 @@ public class ActivityDiagramTransitionsToStringTest {
 		return Arrays.asList(new Object[][] {
 	        { Arrays.asList(
 	        		new TransitionTempHolder(NAME, PROB, activityNode, finalNode)), 
-	        	"<ActivityDiagramTransitions>" + "\n" + 
+	        	"<ActivityDiagramTransitions>" +
 	        			"<Transition name=\"" +NAME +"\" " + "prob=\"" + PROB + "\" " + "source=\"" +  
 	        				activityNode.getName() + "\" target=\"" + finalNode.getName() + "\" />" +
-	        	"\n" + "</ActivityDiagramTransitions>"},
+	        	 "</ActivityDiagramTransitions>"},
 	        { Arrays.asList(
 	        		new TransitionTempHolder(NAME, PROB, activityNode, finalNode),
 	        		new TransitionTempHolder(NAME + "2", PROB, mergeNode, finalNode)),
-	        		"<ActivityDiagramTransitions>" + "\n" + 
+	        		"<ActivityDiagramTransitions>" +
 	        			"<Transition name=\"" +NAME +"\" " + "prob=\"" + PROB + "\" " + "source=\"" +
-        					activityNode.getName() + "\" target=\"" + finalNode.getName() + "\" />" + "\n" +
+        					activityNode.getName() + "\" target=\"" + finalNode.getName() + "\" />" +
     					"<Transition name=\"" +NAME +"2\" " + "prob=\"" + PROB + "\" " + "source=\"" +
     						mergeNode.getName() + "\" target=\"" + finalNode.getName() + "\" />" +
-		        	"\n" + "</ActivityDiagramTransitions>" 
+		        	"</ActivityDiagramTransitions>" 
 	        },
 	        { Arrays.asList(
 	        		new TransitionTempHolder(NAME, PROB, activityNode, mergeNode),
 	        		new TransitionTempHolder(NAME + "2", PROB, new ActivityNode("activity2"), mergeNode),
 	        		new TransitionTempHolder(NAME + "3", PROB, decisionNode, mergeNode)),
-	        	"<ActivityDiagramTransitions>" + "\n" + 
+	        	"<ActivityDiagramTransitions>" + 
         			"<Transition name=\"" +NAME +"\" " + "prob=\"" + PROB + "\" " + "source=\"" +
-    					activityNode.getName() + "\" target=\"" + mergeNode.getName() + "\" />" + "\n" +
+    					activityNode.getName() + "\" target=\"" + mergeNode.getName() + "\" />" +
 					"<Transition name=\"" +NAME +"2\" " + "prob=\"" + PROB + "\" " + "source=\"" +
-						 "activity2\" target=\"" + mergeNode.getName() + "\" />" + "\n" +
+						 "activity2\" target=\"" + mergeNode.getName() + "\" />" + 
 					"<Transition name=\"" +NAME +"3\" " + "prob=\"" + PROB + "\" " + "source=\"" +
 						decisionNode.getName() + "\" target=\"" + mergeNode.getName() + "\" />" +
-	        	"\n" + "</ActivityDiagramTransitions>"
+	        	"</ActivityDiagramTransitions>"
 	        },
 		});
 	}

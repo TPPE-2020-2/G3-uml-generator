@@ -41,10 +41,10 @@ public class ActivityDiagramElementsToStringTest {
 	@Test
 	public void testBasicDiagramElements() throws ActivityDiagramRuleException {
 		String expectedString = "<ActivityDiagramElements>" + 
-				"\n" + startNode.toString() +
-				"\n" +activityNode.toString() + 
-				"\n" +finalNode.toString() +
-				"\n" + "</ActivityDiagramElements>";
+				startNode.toString() +
+				activityNode.toString() + 
+				finalNode.toString() +
+				"</ActivityDiagramElements>";
 		
 		activityDiagramElement.setStartNode(startNode);
 		activityDiagramElement.addActivityNode(activityNode);
@@ -59,11 +59,11 @@ public class ActivityDiagramElementsToStringTest {
 		ActivityNode activityNode2 = new ActivityNode("activity2");
 		
 		String expectedString = "<ActivityDiagramElements>" + 
-				"\n" + startNode.toString() +
-				"\n" + activityNode.toString() +
-				"\n" + activityNode2.toString() +
-				"\n" + finalNode.toString() +
-				"\n" + "</ActivityDiagramElements>";
+				startNode.toString() +
+				activityNode.toString() +
+				activityNode2.toString() +
+				finalNode.toString() +
+				"</ActivityDiagramElements>";
 		
 		activityDiagramElement.setStartNode(startNode);
 		activityDiagramElement.addActivityNode(activityNode);
@@ -77,12 +77,12 @@ public class ActivityDiagramElementsToStringTest {
 	@Test
 	public void testDiagramElementsWithDecisionAndMerge() throws ActivityDiagramRuleException {
 		String expectedString = "<ActivityDiagramElements>" + 
-				"\n" + startNode.toString() +
-				"\n" + activityNode.toString() + 
-				"\n" + decisionNode.toString() +
-				"\n" + mergeNode.toString() +
-				"\n" + finalNode.toString() +
-				"\n" + "</ActivityDiagramElements>";
+				startNode.toString() +
+				activityNode.toString() + 
+				decisionNode.toString() +
+				mergeNode.toString() +
+				finalNode.toString() +
+				"</ActivityDiagramElements>";
 		
 		activityDiagramElement.setStartNode(startNode);
 		activityDiagramElement.addActivityNode(activityNode);
@@ -99,13 +99,13 @@ public class ActivityDiagramElementsToStringTest {
 		ActivityNode activityNode2 = new ActivityNode("activity2");
 		
 		String expectedString = "<ActivityDiagramElements>" + 
-				"\n" + startNode.toString() +
-				"\n" + activityNode.toString() + 
-				"\n" + activityNode2.toString() +
-				"\n" + decisionNode.toString() +
-				"\n" + mergeNode.toString() +
-				"\n" + finalNode.toString() +
-				"\n" + "</ActivityDiagramElements>";
+				startNode.toString() +
+				activityNode.toString() + 
+				activityNode2.toString() +
+				decisionNode.toString() +
+				mergeNode.toString() +
+				finalNode.toString() +
+				"</ActivityDiagramElements>";
 		
 		activityDiagramElement.setStartNode(startNode);
 		activityDiagramElement.addActivityNode(activityNode);

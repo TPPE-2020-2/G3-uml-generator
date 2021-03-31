@@ -145,23 +145,23 @@ public class ActivityDiagramElements {
 		String finalNodeString = "";
 		
 		for (ActivityNode activityNode: activityNodesList)
-			activityString += "\n" + activityNode.toString();
+			activityString += activityNode.toString();
 		
 		for (DecisionNode decisionNode: decisionNodeList)
-			decisionNodeString += "\n" + decisionNode.toString();
+			decisionNodeString += decisionNode.toString();
 		
 		for (MergeNode mergeNode: mergeNodeList)
-			mergeNodeString += "\n" + mergeNode.toString();
+			mergeNodeString += mergeNode.toString();
 		
 		for (FinalNode finalNode: finalNodeList)
-			finalNodeString += "\n" + finalNode.toString();
+			finalNodeString += finalNode.toString();
 		
 		return "<ActivityDiagramElements>" +
-				"\n" + startNode.toString() + 
+				startNode.toString() + 
 				activityString +
 				decisionNodeString +
 				mergeNodeString +
 				finalNodeString +
-			"\n" + "</ActivityDiagramElements>";
+			 "</ActivityDiagramElements>";
 	}
 }

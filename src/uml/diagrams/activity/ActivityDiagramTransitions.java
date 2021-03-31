@@ -114,10 +114,10 @@ public class ActivityDiagramTransitions {
 		String transitionsString = "";
 		
 		for (Transition temp : transitionList)
-			transitionsString += "\n" + temp.toString();
+			transitionsString += temp.toString();
 		
 		return "<ActivityDiagramTransitions>" +
 					transitionsString +
-				"\n" + "</ActivityDiagramTransitions>";
+				"</ActivityDiagramTransitions>";
 	}
 }
