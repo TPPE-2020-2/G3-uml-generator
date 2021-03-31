@@ -12,21 +12,35 @@ import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
 
 public class SequenceDiagramsToStringTest {
 	
-    public static Collection<Object[]>sequenceDiagramsName() {
+    public static Collection<Object[]>sequenceDiagramsNameTrue() {
         return Arrays.asList(new Object[][] {
-            {"name", "<SequenceDiagrams name=\"name\" />"},
-            {"test123", "<SequenceDiagrams name=\"test123\" />"},
-            {"a", "<SequenceDiagrams name=\"a\" />"},
-            {"1", "<SequenceDiagrams name=\"1\" />"}
+            {"name", "<SequenceDiagram name=\"name\" guardCondition=\"true\" />"},
+            {"test123", "<SequenceDiagram name=\"test123\" guardCondition=\"true\" />"},
+            {"a", "<SequenceDiagram name=\"a\" guardCondition=\"true\" />"},
+        });
+    }
+    
+    public static Collection<Object[]>sequenceDiagramsNameFalse() {
+        return Arrays.asList(new Object[][] {
+            {"name", "<SequenceDiagram name=\"name\" guardCondition=\"false\" />"},
+            {"test123", "<SequenceDiagram name=\"test123\" guardCondition=\"false\" />"},
+            {"a", "<SequenceDiagram name=\"a\" guardCondition=\"false\" />"},
         });
     }
     
     @ParameterizedTest
-    @MethodSource("sequenceDiagramsName")
-    void testGetSequenceDiagramsToString(String name, String expectedString) throws SequenceDiagramRuleException {
-        SequenceDiagrams diagram = new SequenceDiagrams(name);
+    @MethodSource("sequenceDiagramsNameTrue")
+    void testGetSequenceDiagramsToStringTrue(String name, String expectedString) throws SequenceDiagramRuleException {
+        SequenceDiagrams diagram = new SequenceDiagrams(name, true);
 
         assertEquals(expectedString, diagram.toString());
     }
 
+    @ParameterizedTest
+    @MethodSource("sequenceDiagramsNameFalse")
+    void testGetSequenceDiagramsToStringFalse(String name, String expectedString) throws SequenceDiagramRuleException {
+        SequenceDiagrams diagram = new SequenceDiagrams(name, false);
+
+        assertEquals(expectedString, diagram.toString());
+    }
 }
