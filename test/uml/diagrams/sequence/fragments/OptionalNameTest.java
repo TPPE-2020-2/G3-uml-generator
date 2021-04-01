@@ -13,9 +13,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import uml.diagrams.sequence.BaseElement;
 import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
-import uml.diagrams.sequence.fragments.Optional;
-import uml.diagrams.sequence.lifelines.Lifeline;
-import uml.diagrams.sequence.sequencediagram.SequenceDiagram;
+import uml.diagrams.sequence.sequencediagrams.SequenceDiagram;
 
 public class OptionalNameTest {
 	private Optional optional;

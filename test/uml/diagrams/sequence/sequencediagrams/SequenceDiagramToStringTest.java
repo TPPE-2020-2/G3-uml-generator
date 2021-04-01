@@ -1,4 +1,4 @@
-package uml.diagrams.sequence.sequencediagram;
+package uml.diagrams.sequence.sequencediagrams;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -12,12 +12,14 @@ import org.junit.jupiter.params.provider.MethodSource;
 import uml.diagrams.sequence.exceptions.MessageFormatException;
 import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
 import uml.diagrams.sequence.lifelines.Lifeline;
-import uml.diagrams.sequence.message.Message;
-import uml.diagrams.sequence.message.MessageAsync;
-import uml.diagrams.sequence.message.MessageSync;
-import uml.diagrams.sequence.message.Reply;
+import uml.diagrams.sequence.messages.Message;
+import uml.diagrams.sequence.messages.MessageAsync;
+import uml.diagrams.sequence.messages.MessageSync;
+import uml.diagrams.sequence.messages.Reply;
+import uml.diagrams.sequence.sequencediagrams.SequenceDiagram;
 
-public class SequenceDiagramCreateElementsTest {
+public class SequenceDiagramToStringTest {
+
     public static Collection<Object[]> sequenceDiagrams()
             throws MessageFormatException, SequenceDiagramRuleException {
         return Arrays.asList(new Object[][] {
@@ -27,7 +29,9 @@ public class SequenceDiagramCreateElementsTest {
                     Arrays.asList(
                             new MessageSync("messagesync", 0.5f, new Lifeline("origem"), new Lifeline("destino"))
                     ),
-                    1
+                    "<SequenceDiagram name=\"diagram1\" guardCondition=\"true\">" +
+                    "<MessageSync name=\"messagesync\" prob=\"0.5\" source=\"origem\" target=\"destino\" />" +
+                    "</SequenceDiagram>"
                 },
                 {
                     "diagram2",
@@ -36,7 +40,10 @@ public class SequenceDiagramCreateElementsTest {
                             new MessageSync("messagesync", 0.5f, new Lifeline("origem"), new Lifeline("destino")),
                             new MessageAsync("messageasync", 0.99f, new Lifeline("origem"), new Lifeline("destino"))
                     ),
-                    2
+                    "<SequenceDiagram name=\"diagram2\" guardCondition=\"false\">" +
+                    "<MessageSync name=\"messagesync\" prob=\"0.5\" source=\"origem\" target=\"destino\" />" +
+                    "<MessageAsync name=\"messageasync\" prob=\"0.99\" source=\"origem\" target=\"destino\" />" +
+                    "</SequenceDiagram>"
                 },
                 {
                     "diagram3",
@@ -46,15 +53,18 @@ public class SequenceDiagramCreateElementsTest {
                             new MessageSync("messagesync", 0.5f, new Lifeline("origem"), new Lifeline("destino")),
                             new Reply("reply", 0.0f, new Lifeline("origem"), new Lifeline("destino"))
                     ),
-                    3
+                    "<SequenceDiagram name=\"diagram3\" guardCondition=\"true\">" +
+                    "<MessageAsync name=\"messageasync\" prob=\"0.99\" source=\"origem\" target=\"destino\" />" +
+                    "<MessageSync name=\"messagesync\" prob=\"0.5\" source=\"origem\" target=\"destino\" />" +
+                    "<Reply name=\"reply\" prob=\"0.0\" source=\"origem\" target=\"destino\" />" +
+                    "</SequenceDiagram>"
                 }
         });
     }
 
     @ParameterizedTest
     @MethodSource("sequenceDiagrams")
-    void testGetSequenceDiagramsToString(String name, Boolean guard,
-            List<Message> messages, int expectedMessageSize)
+    void testGetSequenceDiagramsToString(String name, Boolean guard, List<Message> messages, String expectedString)
             throws SequenceDiagramRuleException {
         SequenceDiagram diagram = new SequenceDiagram(name, guard);
 
@@ -62,12 +72,6 @@ public class SequenceDiagramCreateElementsTest {
             diagram.addMessage(message);
         }
         
-        List<Message> returnedMessages = diagram.getMessages();
-        
-        assertEquals(expectedMessageSize, returnedMessages.size());
-        
-        for (int i = 0; i < returnedMessages.size(); i++) {
-            assertEquals(messages.get(i), returnedMessages.get(i));
-        }
+        assertEquals(expectedString, diagram.toString());
     }
 }

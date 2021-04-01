@@ -1,4 +1,4 @@
-package uml.diagrams.sequence.message;
+package uml.diagrams.sequence.messages;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -12,6 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import uml.diagrams.sequence.exceptions.MessageFormatException;
 import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
 import uml.diagrams.sequence.lifelines.Lifeline;
+import uml.diagrams.sequence.messages.Message;
 
 public class MessageExceptionsTest {
 

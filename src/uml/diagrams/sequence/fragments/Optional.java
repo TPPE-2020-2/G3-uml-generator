@@ -1,8 +1,8 @@
 package uml.diagrams.sequence.fragments;
 
 import uml.diagrams.sequence.BaseElement;
-import uml.diagrams.sequence.sequencediagram.SequenceDiagram;
 import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
+import uml.diagrams.sequence.sequencediagrams.SequenceDiagram;
 
 public class Optional extends BaseElement {
 	private SequenceDiagram representedBy;

@@ -14,7 +14,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
-import uml.diagrams.sequence.sequencediagram.SequenceDiagram;
+import uml.diagrams.sequence.sequencediagrams.SequenceDiagram;
 
 public class FragmentsSettersAndGettersTest {
 
