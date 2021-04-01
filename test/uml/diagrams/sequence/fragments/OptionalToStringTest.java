@@ -31,9 +31,9 @@ public class OptionalToStringTest {
 
 	public static Collection<Object[]> optionalParams() {
 		return Arrays.asList(new Object[][] { 
-			{ "name1", sequenceDiagram, "<Optional name=\"name1\" representedBy=\"default\" />" },
-			{ "name2", sequenceDiagram, "<Optional name=\"name2\" representedBy=\"default\" />" },
-			{ "name3", sequenceDiagram, "<Optional name=\"name3\" representedBy=\"default\" />" }, });
+			{ "name1", sequenceDiagram, "<Optional name=\"name1\" representedBy=\"default\"/>" },
+			{ "name2", sequenceDiagram, "<Optional name=\"name2\" representedBy=\"default\"/>" },
+			{ "name3", sequenceDiagram, "<Optional name=\"name3\" representedBy=\"default\"/>" }, });
 	}
 
 	@ParameterizedTest
