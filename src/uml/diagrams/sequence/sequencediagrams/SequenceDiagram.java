@@ -31,7 +31,9 @@ public class SequenceDiagram extends BaseElement {
 	}
 	
 	public void addMessage(Message message) {
-        messages.add(message);
+	    if (message != null) {	        
+	        messages.add(message);
+	    }
     }
 	
 	public List<Message> getMessages() {

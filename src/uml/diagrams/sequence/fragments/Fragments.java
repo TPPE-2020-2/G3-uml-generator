@@ -32,9 +32,6 @@ public class Fragments extends BaseGroup {
 	
 	@Override
 	public String toString() {
-		if (optionals.size() == 0)
-			return "";
-		
 		String optionalsList = "";
 		
 		for (Optional temp: optionals)

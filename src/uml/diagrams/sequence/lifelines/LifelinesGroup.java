@@ -14,7 +14,9 @@ public class LifelinesGroup extends BaseGroup {
     }
 
     public void addLifeline(Lifeline lifeline) {
-        lifelines.add(lifeline);
+        if (lifeline != null) {
+            lifelines.add(lifeline);
+        }
     }
     
     public List<Lifeline> getLifelines() {

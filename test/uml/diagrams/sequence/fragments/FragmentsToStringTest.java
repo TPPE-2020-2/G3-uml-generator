@@ -35,7 +35,7 @@ public class FragmentsToStringTest {
 	public static Collection<Object[]> optionalParams()
 	        throws SequenceDiagramRuleException, EmptyOptionalFragmentException {
 		return Arrays.asList(new Object[][] {
-			{ new ArrayList<Optional>(), ""},
+			{ new ArrayList<Optional>(), "<Fragments></Fragments>"},
 			{ Arrays.asList(
 					new Optional(DEFAULT_NAME, sequenceDiagram)), 
 			"<Fragments><Optional name=\"default\" representedBy=\"default\"/></Fragments>"},
@@ -62,9 +62,8 @@ public class FragmentsToStringTest {
 	@MethodSource("optionalParams")
 	void testGetAndSetValuesWithSuccess(List<Optional> optionals, String expectedToString)
 			throws SequenceDiagramRuleException {
-		if (optionals.size() > 0)
-			for (Optional optional : optionals)
-				fragments.addOptional(optional);
+		for (Optional optional : optionals)
+			fragments.addOptional(optional);
 		assertEquals(expectedToString, fragments.toString());
 	}
 }

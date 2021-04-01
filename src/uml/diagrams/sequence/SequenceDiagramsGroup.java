@@ -46,4 +46,18 @@ public class SequenceDiagramsGroup extends BaseGroup {
     public SequenceDiagram getSequenceDiagram(String sequenceDiagramName) {
         return findNode(sequenceDiagrams, elem -> elem.getName() == sequenceDiagramName);
     }
+    
+    @Override
+    public String toString() {
+        String sequenceDiagramsString = "";
+        
+        for (SequenceDiagram diagram: sequenceDiagrams)
+            sequenceDiagramsString += diagram.toString();
+        
+        return  "<SequenceDiagrams>" +
+                    lifelinesGroup.toString() +
+                    fragments.toString() +
+                    sequenceDiagramsString +
+                "</SequenceDiagrams>";
+    }
 }
