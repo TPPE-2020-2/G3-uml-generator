@@ -1,4 +1,4 @@
-package uml.diagrams.sequence.lifelines.lifeline;
+package uml.diagrams.sequence.lifelines;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -11,7 +11,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import uml.diagrams.sequence.BaseElement;
 import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
-import uml.diagrams.sequence.lifelines.Lifeline;
 
 public class LifelineInvalidNamesTest {
     
