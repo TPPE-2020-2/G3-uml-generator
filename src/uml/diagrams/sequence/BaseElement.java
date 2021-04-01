@@ -9,9 +9,7 @@ public class BaseElement {
     protected String name;
     
     public BaseElement(String name) throws SequenceDiagramRuleException {
-        validateName(name);
-
-        this.name = name;
+        setName(name);
     }
     
     public String getName() {
@@ -19,8 +17,7 @@ public class BaseElement {
     }
 
     public void setName(String name) throws SequenceDiagramRuleException {
-        if (name == null || name.trim().isEmpty())
-            throw new SequenceDiagramRuleException(NAME_ERROR);
+        validateName(name);
         this.name = name;
     }
     

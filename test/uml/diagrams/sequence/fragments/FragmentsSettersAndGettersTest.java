@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import uml.diagrams.sequence.exceptions.EmptyOptionalFragmentException;
 import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
 import uml.diagrams.sequence.sequencediagrams.SequenceDiagram;
 
@@ -33,7 +34,8 @@ public class FragmentsSettersAndGettersTest {
 		sequenceDiagram = new SequenceDiagram(DEFAULT_NAME, true);
 	}
 
-	public static Collection<Object[]> optionalParams() throws SequenceDiagramRuleException {
+	public static Collection<Object[]> optionalParams()
+	        throws SequenceDiagramRuleException, EmptyOptionalFragmentException {
 		return Arrays.asList(new Object[][] {
 			{ Arrays.asList(
 					new Optional(DEFAULT_NAME, sequenceDiagram)), 1},

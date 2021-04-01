@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import uml.diagrams.sequence.exceptions.EmptyOptionalFragmentException;
 import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
 import uml.diagrams.sequence.sequencediagrams.SequenceDiagram;
 
@@ -20,7 +21,8 @@ public class OptionalToStringTest {
 	private static SequenceDiagram sequenceDiagram;
 
 	@BeforeEach
-	public void setup() throws SequenceDiagramRuleException {
+	public void setup()
+	        throws SequenceDiagramRuleException, EmptyOptionalFragmentException {
 		optional = new Optional(DEFAULT_NAME, sequenceDiagram);
 	}
 
