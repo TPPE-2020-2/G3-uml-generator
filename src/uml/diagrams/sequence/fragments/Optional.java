@@ -20,5 +20,10 @@ public class Optional extends BaseElement {
 		return representedBy;
 	}
 	
-	// TODO toString overRide
+	@Override
+	public String toString() {
+		return "<Optional " +
+			"name=\"" + name + "\" " + 
+			"representedBy=\"" + representedBy.getName() + "\" />";
+	}
 }
