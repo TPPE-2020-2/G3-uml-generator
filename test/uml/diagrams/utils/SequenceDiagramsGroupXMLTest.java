@@ -34,7 +34,7 @@ public class SequenceDiagramsGroupXMLTest {
     }
 
     @Test
-    public void testToString4() throws SequenceDiagramRuleException,
+    public void testGenerateXML() throws SequenceDiagramRuleException,
         EmptyOptionalFragmentException, MessageFormatException,
         UnsupportedEncodingException, ParserConfigurationException,
         SAXException, IOException, TransformerException {
