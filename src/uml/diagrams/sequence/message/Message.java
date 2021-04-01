@@ -9,10 +9,10 @@ public class Message {
 	static final String INVALID_SOURCE = "O valor de origem não pode ser nulo";
 	static final String INVALID_TARGET = "O valor de destino não pode ser nulo";
     
-    private String name;
-	private Float prob = 0.0f;
-	private Lifeline source;
-	private Lifeline target;
+    protected String name;
+    protected Float prob = 0.0f;
+    protected Lifeline source;
+    protected Lifeline target;
 	
 	public Message(String name, Float prob, Lifeline source, Lifeline target)
 	        throws MessageFormatException, SequenceDiagramRuleException {
