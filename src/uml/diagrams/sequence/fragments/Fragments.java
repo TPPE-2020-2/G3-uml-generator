@@ -3,9 +3,10 @@ package uml.diagrams.sequence.fragments;
 import java.util.ArrayList;
 import java.util.List;
 
+import uml.diagrams.sequence.BaseGroup;
 import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
 
-public class Fragments {
+public class Fragments extends BaseGroup {
 	
 	public final static String NULL_OPTIONAL_VALUE = "O Optional não pode ser nulo";
 	
@@ -24,6 +25,10 @@ public class Fragments {
 	public List<Optional> getOptionals() {
 		return optionals;
 	}
+	
+	public Optional getOptional(String optionalName) {
+	    return findNode(optionals, elem -> elem.getName() == optionalName);
+    }
 	
 	@Override
 	public String toString() {

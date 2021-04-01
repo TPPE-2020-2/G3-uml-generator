@@ -3,7 +3,9 @@ package uml.diagrams.sequence.lifelines;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LifelinesGroup {
+import uml.diagrams.sequence.BaseGroup;
+
+public class LifelinesGroup extends BaseGroup {
     
     List<Lifeline> lifelines;
     
@@ -17,6 +19,10 @@ public class LifelinesGroup {
     
     public List<Lifeline> getLifelines() {
         return lifelines;
+    }
+    
+    public Lifeline getLifeline(String lifelineName) {
+        return findNode(lifelines, elem -> elem.getName() == lifelineName);
     }
     
     @Override
