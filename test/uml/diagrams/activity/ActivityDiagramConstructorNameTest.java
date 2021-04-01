@@ -14,7 +14,7 @@ class ActivityDiagramConstructorNameTest {
 	
 	private ActivityDiagram activityDiagram;
 
-	public static Collection activityDiagramNames() {
+	public static Collection<Object[]> activityDiagramNames() {
 		return Arrays.asList(new Object[][] {
 	        { "name" },
 	        { "activity" },

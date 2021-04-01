@@ -19,7 +19,7 @@ public class ActivityNodeInvalidNamesValidationTest {
 
 	private ActivityNode activityNode;
 	
-	public static Collection emptyValues() {
+	public static Collection<Object[]> emptyValues() {
 		return Arrays.asList(new Object[][] {
 	        { "" },
 	        { null }

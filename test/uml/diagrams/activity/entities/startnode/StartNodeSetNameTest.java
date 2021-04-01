@@ -14,7 +14,6 @@ import uml.diagrams.activity.exceptions.ActivityDiagramRuleException;
 
 class StartNodeSetNameTest {
 	private StartNode initialNode;
-	private String name;
 	private final String INITIAL_NAME = "NAME";
 	
 	@BeforeEach
@@ -22,7 +21,7 @@ class StartNodeSetNameTest {
 		initialNode = new StartNode(INITIAL_NAME);
 	}
 	
- 	public static Collection startNodeNames() {
+ 	public static Collection<Object[]> startNodeNames() {
 		return Arrays.asList(new Object[][] {
 	        { "name" },
 	        { "initialNode" },

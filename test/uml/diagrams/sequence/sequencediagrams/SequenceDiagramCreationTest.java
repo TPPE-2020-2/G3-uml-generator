@@ -9,10 +9,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
-import uml.diagrams.sequence.sequencediagrams.SequenceDiagram;
 
-
-public class SequenceDiagramCreation {
+public class SequenceDiagramCreationTest {
     public static Collection<Object[]> sequenceDiagramsName() {
         return Arrays.asList(new Object[][] {
             {"lifeline", true},

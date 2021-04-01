@@ -16,8 +16,6 @@ import uml.diagrams.activity.exceptions.ActivityDiagramRuleException;
 
 public class ActivityDiagramValidationsTest {
 	private ActivityDiagram activityDiagram;
-	private ActivityDiagramElements activityDiagramElements;
-	private ActivityDiagramTransitions activityDiagramTransitions;
 	
 	private final static String NO_START_NODE_TRANSITION_ERROR_MESSAGE = "Transição para o StartNode não encontrada!";
 	private final static String LESS_THAN_MININIUM_TRANSITIONS_ERROR_MESSAGE = "É necessário no mínimo duas transições";
@@ -35,8 +33,6 @@ public class ActivityDiagramValidationsTest {
 	@BeforeEach
 	public void setup() throws ActivityDiagramRuleException {
 		activityDiagram = new ActivityDiagram(DEFAULT_NAME);
-		activityDiagramElements = new ActivityDiagramElements();
-		activityDiagramTransitions = new ActivityDiagramTransitions();
 	}
 	
 	@BeforeAll
@@ -50,8 +46,6 @@ public class ActivityDiagramValidationsTest {
 	
 	@Test
 	public void testValidationWhenOnlyOneTransition() throws ActivityDiagramRuleException {
-		ActivityNode activityNode2 = new ActivityNode("activity2");
-
 		activityDiagram.addNodeElement(startNode);
 		activityDiagram.addNodeElement(activityNode);
 		activityDiagram.addNodeElement(finalNode);

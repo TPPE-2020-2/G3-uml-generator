@@ -11,8 +11,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import uml.diagrams.sequence.BaseElement;
 import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
-import uml.diagrams.sequence.sequencediagrams.SequenceDiagram;
-
 
 public class SequenceDiagramInvalidNamesTest {
     public static Collection<Object[]> sequenceDiagramsName() {

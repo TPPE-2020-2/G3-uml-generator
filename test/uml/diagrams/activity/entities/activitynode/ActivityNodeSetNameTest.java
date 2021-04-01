@@ -22,7 +22,7 @@ class ActivityNodeSetNameTest {
 		activityNode = new ActivityNode(DEFAULT_NAME);
 	}
 
-	public static Collection activityNodeNames() {
+	public static Collection<Object[]> activityNodeNames() {
 		return Arrays.asList(new Object[][] {
 	        { "name" },
 	        { "activityNode" },

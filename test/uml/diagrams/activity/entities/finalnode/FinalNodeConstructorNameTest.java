@@ -13,7 +13,7 @@ import uml.diagrams.activity.exceptions.ActivityDiagramRuleException;
 
 class FinalNodeConstructorNameTest {
 	
- 	public static Collection finalNodeNames() {
+ 	public static Collection<Object[]> finalNodeNames() {
 		return Arrays.asList(new Object[][] {
 	        { "name" },
 	        { "finalNode" },

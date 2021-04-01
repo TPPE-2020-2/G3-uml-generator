@@ -1,7 +1,5 @@
 package uml.diagrams.activity.utils;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
@@ -9,7 +7,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 
 import org.junit.jupiter.api.BeforeAll;

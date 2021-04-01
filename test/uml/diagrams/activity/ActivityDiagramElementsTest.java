@@ -13,7 +13,6 @@ import uml.diagrams.activity.exceptions.ActivityDiagramRuleException;
 
 public class ActivityDiagramElementsTest {
 	private ActivityDiagram activityDiagram;
-	private ActivityDiagramElements activityDiagramElements;
 	
 	private final static String DEFAULT_NAME = "default";
 	private static StartNode startNode;
@@ -25,7 +24,6 @@ public class ActivityDiagramElementsTest {
 	@BeforeEach
 	public void setup() throws ActivityDiagramRuleException {
 		activityDiagram = new ActivityDiagram(DEFAULT_NAME);
-		activityDiagramElements = new ActivityDiagramElements();
 	}
 	
 	@BeforeAll

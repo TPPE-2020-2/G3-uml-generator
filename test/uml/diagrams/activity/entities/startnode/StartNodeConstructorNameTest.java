@@ -13,9 +13,7 @@ import uml.diagrams.activity.exceptions.ActivityDiagramRuleException;
 
 class StartNodeConstructorNameTest {
 	
-	private String name;
-	
- 	public static Collection startNodeNames() {
+ 	public static Collection<Object[]> startNodeNames() {
 		return Arrays.asList(new Object[][] {
 	        { "name" },
 	        { "initialNode" },

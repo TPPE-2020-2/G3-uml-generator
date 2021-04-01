@@ -18,7 +18,7 @@ class MergeNodeInvalidNamesValidationTest {
 
 	private MergeNode mergeNode;
 	
-	public static Collection emptyValues() {
+	public static Collection<Object[]> emptyValues() {
 		return Arrays.asList(new Object[][] {
 	        { "" },
 	        { null }

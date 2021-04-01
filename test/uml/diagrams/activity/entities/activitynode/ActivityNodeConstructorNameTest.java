@@ -13,7 +13,7 @@ import uml.diagrams.activity.exceptions.ActivityDiagramRuleException;
 
 class ActivityNodeConstructorNameTest {
 
-	public static Collection activityNodeNames() {
+	public static Collection<Object[]> activityNodeNames() {
 		return Arrays.asList(new Object[][] {
 	        { "name" },
 	        { "activityNode" },

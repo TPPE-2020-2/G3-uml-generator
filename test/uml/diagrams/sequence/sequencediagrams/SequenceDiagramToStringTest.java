@@ -12,7 +12,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import uml.diagrams.sequence.exceptions.MessageFormatException;
 import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
 import uml.diagrams.sequence.lifelines.Lifeline;
-import uml.diagrams.sequence.sequencediagrams.SequenceDiagram;
 import uml.diagrams.sequence.sequencediagrams.messages.Message;
 import uml.diagrams.sequence.sequencediagrams.messages.MessageAsync;
 import uml.diagrams.sequence.sequencediagrams.messages.MessageSync;

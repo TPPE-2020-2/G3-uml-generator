@@ -55,15 +55,15 @@ public class OptionalNameTest {
 		assertEquals(name, optional.getName());
 	}
 
-	public static Collection<Object[]> optionalInvalidParams() {
+	public static Collection<Object[]> optionalInvalidNameParams() {
 		return Arrays.asList(new Object[][] { 
 			{ "", sequenceDiagram }, 
 			{ null, sequenceDiagram }, });
 	}
 
 	@ParameterizedTest
-	@MethodSource("optionalInvalidParams")
-	void testFailOptionalSuccessWithValidNamesConstructor(String name, SequenceDiagram diagram)
+	@MethodSource("optionalInvalidNameParams")
+	void testFailOptionalSuccessWithInvalidNamesConstructor(String name, SequenceDiagram diagram)
 			throws SequenceDiagramRuleException {
 		SequenceDiagramRuleException exception = assertThrows(SequenceDiagramRuleException.class,
 				() -> new Optional(name, diagram));
@@ -72,8 +72,8 @@ public class OptionalNameTest {
 	}
 
 	@ParameterizedTest
-	@MethodSource("optionalInvalidParams")
-	void testFailtOptionalSuccessWithValidNamesSetter(String name, SequenceDiagram diagram)
+	@MethodSource("optionalInvalidNameParams")
+	void testFailOptionalSuccessWithInvalidNamesSetter(String name, SequenceDiagram diagram)
 			throws SequenceDiagramRuleException {
 		SequenceDiagramRuleException exception = assertThrows(SequenceDiagramRuleException.class,
 				() -> optional.setName(name));
