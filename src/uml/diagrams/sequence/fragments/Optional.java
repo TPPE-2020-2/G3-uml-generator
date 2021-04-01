@@ -24,6 +24,6 @@ public class Optional extends BaseElement {
 	public String toString() {
 		return "<Optional " +
 			"name=\"" + name + "\" " + 
-			"representedBy=\"" + representedBy.getName() + "\" />";
+			"representedBy=\"" + representedBy.getName() + "\"/>";
 	}
 }
