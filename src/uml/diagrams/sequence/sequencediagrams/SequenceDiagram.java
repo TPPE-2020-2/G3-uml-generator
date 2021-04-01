@@ -5,7 +5,7 @@ import java.util.List;
 
 import uml.diagrams.sequence.BaseElement;
 import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
-import uml.diagrams.sequence.messages.Message;
+import uml.diagrams.sequence.sequencediagrams.messages.Message;
 
 public class SequenceDiagram extends BaseElement {
 	final static String INVALID_GUARD_CONDITION_VALUE_ERROR_MESSAGE = "A condição de guarda não pode ser vazia ou nula";

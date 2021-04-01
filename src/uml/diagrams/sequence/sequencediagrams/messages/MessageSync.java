@@ -1,4 +1,4 @@
-package uml.diagrams.sequence.messages;
+package uml.diagrams.sequence.sequencediagrams.messages;
 
 import uml.diagrams.sequence.exceptions.MessageFormatException;
 import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
