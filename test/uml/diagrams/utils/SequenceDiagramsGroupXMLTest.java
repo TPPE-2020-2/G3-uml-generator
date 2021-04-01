@@ -1,4 +1,4 @@
-package uml.diagrams.sequence.utils;
+package uml.diagrams.utils;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -21,7 +21,6 @@ import uml.diagrams.sequence.fragments.Optional;
 import uml.diagrams.sequence.lifelines.Lifeline;
 import uml.diagrams.sequence.sequencediagrams.SequenceDiagram;
 import uml.diagrams.sequence.sequencediagrams.messages.Message;
-import uml.diagrams.utils.XMLUtils;
 
 public class SequenceDiagramsGroupXMLTest {
     private final static String DEFAULT_NAME = "default";

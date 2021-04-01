@@ -1,4 +1,4 @@
-package uml.diagrams.activity.utils;
+package uml.diagrams.utils;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -23,9 +23,8 @@ import uml.diagrams.activity.entities.MergeNode;
 import uml.diagrams.activity.entities.StartNode;
 import uml.diagrams.activity.entities.Transition;
 import uml.diagrams.activity.exceptions.ActivityDiagramRuleException;
-import uml.diagrams.utils.XMLUtils;
 
-public class XMLUtilsTest {
+public class ActivityDiagramXMLTest {
 	
 private ActivityDiagram activityDiagram;
 	
