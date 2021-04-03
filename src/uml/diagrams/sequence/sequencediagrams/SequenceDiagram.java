@@ -5,17 +5,16 @@ import java.util.List;
 
 import uml.diagrams.sequence.BaseElement;
 import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
-import uml.diagrams.sequence.sequencediagrams.messages.Message;
 
 public class SequenceDiagram extends BaseElement {
 	final static String INVALID_GUARD_CONDITION_VALUE_ERROR_MESSAGE = "A condição de guarda não pode ser vazia ou nula";
 	private Boolean guardCondition;
 	
-	private List<Message> messages;
+	private List<ISequenceDiagramElement> elements;
 	
 	public SequenceDiagram(String name, Boolean guardCondition) throws SequenceDiagramRuleException {
 		super(name);
-		messages = new ArrayList<>();
+		elements = new ArrayList<>();
 
 		setGuardCondition(guardCondition);
 	}
@@ -30,14 +29,14 @@ public class SequenceDiagram extends BaseElement {
 		this.guardCondition = guardCondition;
 	}
 	
-	public void addMessage(Message message) {
-	    if (message != null) {	        
-	        messages.add(message);
+	public void addElement(ISequenceDiagramElement element) {
+	    if (element != null) {	        
+	        elements.add(element);
 	    }
     }
 	
-	public List<Message> getMessages() {
-	    return messages;
+	public List<ISequenceDiagramElement> getElements() {
+	    return elements;
 	}
 	
 	@Override
@@ -47,7 +46,7 @@ public class SequenceDiagram extends BaseElement {
 				"guardCondition=\"" + this.getGuardCondition() +
 				"\">";
 
-		for (Message message : messages) {
+		for (ISequenceDiagramElement message : elements) {
             representantion += message.toString();
         }
 		

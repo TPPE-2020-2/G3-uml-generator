@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import uml.diagrams.sequence.exceptions.MessageFormatException;
 import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
 import uml.diagrams.sequence.lifelines.Lifeline;
-import uml.diagrams.sequence.sequencediagrams.messages.Message;
+import uml.diagrams.sequence.sequencediagrams.fragments.Fragment;
 import uml.diagrams.sequence.sequencediagrams.messages.MessageAsync;
 import uml.diagrams.sequence.sequencediagrams.messages.MessageSync;
 import uml.diagrams.sequence.sequencediagrams.messages.Reply;
@@ -25,28 +25,32 @@ public class SequenceDiagramCreateElementsTest {
                     "diagram1",
                     true,
                     Arrays.asList(
-                            new MessageSync("messagesync", 0.5f, new Lifeline("origem"), new Lifeline("destino"))
+                            new MessageSync("messagesync", 0.5f, new Lifeline("origem"), new Lifeline("destino")),
+                            new Fragment("fragment1")
                     ),
-                    1
+                    2
                 },
                 {
                     "diagram2",
                     false,
                     Arrays.asList(
+                            new Fragment("fragment1"),
                             new MessageSync("messagesync", 0.5f, new Lifeline("origem"), new Lifeline("destino")),
                             new MessageAsync("messageasync", 0.99f, new Lifeline("origem"), new Lifeline("destino"))
                     ),
-                    2
+                    3
                 },
                 {
                     "diagram3",
                     true,
                     Arrays.asList(
                             new MessageAsync("messageasync", 0.99f, new Lifeline("origem"), new Lifeline("destino")),
+                            new Fragment("fragment1"),
                             new MessageSync("messagesync", 0.5f, new Lifeline("origem"), new Lifeline("destino")),
-                            new Reply("reply", 0.0f, new Lifeline("origem"), new Lifeline("destino"))
+                            new Reply("reply", 0.0f, new Lifeline("origem"), new Lifeline("destino")),
+                            new Fragment("fragment2")
                     ),
-                    3
+                    5
                 }
         });
     }
@@ -54,20 +58,20 @@ public class SequenceDiagramCreateElementsTest {
     @ParameterizedTest
     @MethodSource("sequenceDiagrams")
     void testGetSequenceDiagramsToString(String name, Boolean guard,
-            List<Message> messages, int expectedMessageSize)
+            List<ISequenceDiagramElement> elements, int expectedMessageSize)
             throws SequenceDiagramRuleException {
         SequenceDiagram diagram = new SequenceDiagram(name, guard);
 
-        for (Message message : messages) {
-            diagram.addMessage(message);
+        for (ISequenceDiagramElement element : elements) {
+            diagram.addElement(element);
         }
+
+        List<ISequenceDiagramElement> returnedElements = diagram.getElements();
+
+        assertEquals(expectedMessageSize, returnedElements.size());
         
-        List<Message> returnedMessages = diagram.getMessages();
-        
-        assertEquals(expectedMessageSize, returnedMessages.size());
-        
-        for (int i = 0; i < returnedMessages.size(); i++) {
-            assertEquals(messages.get(i), returnedMessages.get(i));
+        for (int i = 0; i < returnedElements.size(); i++) {
+            assertEquals(elements.get(i), returnedElements.get(i));
         }
     }
 }

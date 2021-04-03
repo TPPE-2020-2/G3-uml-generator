@@ -2,8 +2,9 @@ package uml.diagrams.sequence.sequencediagrams.messages;
 
 import uml.diagrams.sequence.exceptions.*;
 import uml.diagrams.sequence.lifelines.Lifeline;
+import uml.diagrams.sequence.sequencediagrams.ISequenceDiagramElement;
 
-public class Message {
+public class Message implements ISequenceDiagramElement {
     static final String INVALID_NAME_ERROR_MESSAGE = "O nome não pode ser vazio ou nulo";
 	static final String INVALID_PROB_VALUE_ERROR_MESSAGE = "A prob deve ser um valor real entre 0 e 1";
 	static final String INVALID_SOURCE = "O valor de origem não pode ser nulo";
@@ -15,8 +16,7 @@ public class Message {
     protected Lifeline target;
 	
 	public Message(String name, Float prob, Lifeline source, Lifeline target)
-	        throws MessageFormatException, SequenceDiagramRuleException {
-
+	        throws MessageFormatException {
 		setName(name);
 		setProb(prob);
 		setSource(source);

@@ -20,6 +20,7 @@ import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
 import uml.diagrams.sequence.fragments.Optional;
 import uml.diagrams.sequence.lifelines.Lifeline;
 import uml.diagrams.sequence.sequencediagrams.SequenceDiagram;
+import uml.diagrams.sequence.sequencediagrams.fragments.Fragment;
 import uml.diagrams.sequence.sequencediagrams.messages.Message;
 
 public class SequenceDiagramsGroupXMLTest {
@@ -44,13 +45,20 @@ public class SequenceDiagramsGroupXMLTest {
         Lifeline lifeline1 = new Lifeline(DEFAULT_NAME);
         Lifeline lifeline2 = new Lifeline(DEFAULT_NAME);
         Optional optional1 = new Optional(DEFAULT_NAME, sequenceDiagram1);
-        Message message1 = new Message(DEFAULT_NAME, DEFAULT_PROB, lifeline1, lifeline1);
-        Message message2 = new Message(DEFAULT_NAME, DEFAULT_PROB, lifeline2, lifeline1);
-        Message message3 = new Message(DEFAULT_NAME, DEFAULT_PROB, lifeline2, lifeline1);
+        Message message1 = new Message("message1", DEFAULT_PROB, lifeline1, lifeline1);
+        Message message2 = new Message("message2", DEFAULT_PROB, lifeline2, lifeline1);
+        Message message3 = new Message("message3", DEFAULT_PROB, lifeline2, lifeline1);
+        Fragment fragment1 = new Fragment("fragment1");
+        Fragment fragment2 = new Fragment("fragment2");
+        Fragment fragment3 = new Fragment("fragment3");
         
-        sequenceDiagram1.addMessage(message1);
-        sequenceDiagram1.addMessage(message2);
-        sequenceDiagram2.addMessage(message3);
+        sequenceDiagram1.addElement(message1);
+        sequenceDiagram1.addElement(fragment1);
+        sequenceDiagram1.addElement(message2);
+        sequenceDiagram1.addElement(fragment2);
+
+        sequenceDiagram2.addElement(fragment3);
+        sequenceDiagram2.addElement(message3);
         
         sequenceDiagramsGroup.addLifeline(lifeline1);
         sequenceDiagramsGroup.addOptional(optional1);

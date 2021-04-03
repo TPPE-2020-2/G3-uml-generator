@@ -68,7 +68,7 @@ public class SequenceDiagramToStringTest {
         SequenceDiagram diagram = new SequenceDiagram(name, guard);
 
         for (Message message : messages) {
-            diagram.addMessage(message);
+            diagram.addElement(message);
         }
         
         assertEquals(expectedString, diagram.toString());

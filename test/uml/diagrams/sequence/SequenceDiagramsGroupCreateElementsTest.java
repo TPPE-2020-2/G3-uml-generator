@@ -74,7 +74,7 @@ public class SequenceDiagramsGroupCreateElementsTest {
     
     @Test
     public void testAddSequenceDiagramWithMessage() throws SequenceDiagramRuleException {
-        sequenceDiagram1.addMessage(message);
+        sequenceDiagram1.addElement(message);
         sequenceDiagramsGroup.addSequenceDiagram(sequenceDiagram1);
 
         assertEquals(
@@ -85,7 +85,7 @@ public class SequenceDiagramsGroupCreateElementsTest {
     
     @Test
     public void testAddTwoSequenceDiagram() throws SequenceDiagramRuleException {
-        sequenceDiagram1.addMessage(message);
+        sequenceDiagram1.addElement(message);
         sequenceDiagramsGroup.addSequenceDiagram(sequenceDiagram1);
         sequenceDiagramsGroup.addSequenceDiagram(sequenceDiagram2);
 
