@@ -8,4 +8,9 @@ public class Fragment extends BaseElement {
     public Fragment(String name) throws SequenceDiagramRuleException {
         super(name);
     }
+
+    @Override
+    public String toString() {
+        return "<Fragment " + "name=\"" + name + "\" " + "/>";
+    }
 }
