@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<SequenceDiagrams>
+    <Lifelines>
+        <Lifeline name="default"/>
+    </Lifelines>
+    <Fragments>
+        <Optional name="fragment1" representedBy="diagram1"/>
+        <Optional name="fragment3" representedBy="diagram2"/>
+    </Fragments>
+    <SequenceDiagram guardCondition="true" name="diagram1">
+        <Message name="message1" prob="0.5" source="default" target="default"/>
+        <Fragment name="fragment1"/>
+        <Message name="message2" prob="0.5" source="default" target="default"/>
+        <Fragment name="fragment2"/>
+    </SequenceDiagram>
+    <SequenceDiagram guardCondition="false" name="diagram2">
+        <Fragment name="fragment3"/>
+        <Message name="message3" prob="0.5" source="default" target="default"/>
+    </SequenceDiagram>
+</SequenceDiagrams>

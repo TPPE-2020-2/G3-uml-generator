@@ -13,6 +13,7 @@ import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
 import uml.diagrams.sequence.fragments.Optional;
 import uml.diagrams.sequence.lifelines.Lifeline;
 import uml.diagrams.sequence.sequencediagrams.SequenceDiagram;
+import uml.diagrams.sequence.sequencediagrams.fragments.Fragment;
 import uml.diagrams.sequence.sequencediagrams.messages.Message;
 
 public class SequenceDiagramsGroupCreateElementsTest {
@@ -23,6 +24,7 @@ public class SequenceDiagramsGroupCreateElementsTest {
     private static SequenceDiagram sequenceDiagram1;
     private static SequenceDiagram sequenceDiagram2;
     private static Optional optional;
+    private static Fragment fragment;
     private static Message message;
 
     private SequenceDiagramsGroup sequenceDiagramsGroup;
@@ -38,7 +40,9 @@ public class SequenceDiagramsGroupCreateElementsTest {
         lifeline = new Lifeline(DEFAULT_NAME);
         sequenceDiagram1 = new SequenceDiagram("diagram1", true);
         sequenceDiagram2 = new SequenceDiagram("diagram2", false);
-        optional = new Optional(DEFAULT_NAME, sequenceDiagram1);
+        fragment = new Fragment("fragment");
+        sequenceDiagram1.addElement(fragment);
+        optional = new Optional(fragment, sequenceDiagram1);
         message = new Message(DEFAULT_NAME, DEFAULT_PROB, lifeline, lifeline);
     }
 
@@ -58,7 +62,7 @@ public class SequenceDiagramsGroupCreateElementsTest {
 
         assertEquals(
                 optional,
-                sequenceDiagramsGroup.getOptionals().getOptional(optional.getName())
+                sequenceDiagramsGroup.getOptionals().getOptional(optional.getFragment())
         );
     }
 

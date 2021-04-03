@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -15,10 +14,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 import uml.diagrams.sequence.exceptions.EmptyOptionalFragmentException;
 import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
 import uml.diagrams.sequence.sequencediagrams.SequenceDiagram;
+import uml.diagrams.sequence.sequencediagrams.fragments.Fragment;
 
 public class FragmentsToStringTest {
-	private final static String DEFAULT_NAME = "default";
-	private static SequenceDiagram sequenceDiagram;
 
 	private Fragments fragments;
 
@@ -27,33 +25,44 @@ public class FragmentsToStringTest {
 		fragments = new Fragments();
 	}
 
-	@BeforeAll
-	public static void init() throws SequenceDiagramRuleException {
-		sequenceDiagram = new SequenceDiagram(DEFAULT_NAME, true);
-	}
-
 	public static Collection<Object[]> optionalParams()
 	        throws SequenceDiagramRuleException, EmptyOptionalFragmentException {
+	    Fragment fragment1 = new Fragment("fragment1");
+        Fragment fragment2 = new Fragment("fragment2");
+        Fragment fragment3 = new Fragment("fragment3");
+        SequenceDiagram sequenceDiagram1 = new SequenceDiagram("diagram1", true);
+        SequenceDiagram sequenceDiagram2 = new SequenceDiagram("diagram2", false);
+        SequenceDiagram sequenceDiagram3 = new SequenceDiagram("diagram3", true);
+        
+        sequenceDiagram1.addElement(fragment1);
+
+        sequenceDiagram2.addElement(fragment1);
+        sequenceDiagram2.addElement(fragment2);
+
+        sequenceDiagram3.addElement(fragment1);
+        sequenceDiagram3.addElement(fragment2);
+        sequenceDiagram3.addElement(fragment3);
+	    
 		return Arrays.asList(new Object[][] {
 			{ new ArrayList<Optional>(), "<Fragments></Fragments>"},
 			{ Arrays.asList(
-					new Optional(DEFAULT_NAME, sequenceDiagram)), 
-			"<Fragments><Optional name=\"default\" representedBy=\"default\"/></Fragments>"},
+			        new Optional(fragment1, sequenceDiagram1)), 
+			"<Fragments><Optional name=\"fragment1\" representedBy=\"diagram1\"/></Fragments>"},
 			{ Arrays.asList(
-					new Optional(DEFAULT_NAME, sequenceDiagram), 
-					new Optional(DEFAULT_NAME + "2", sequenceDiagram)), 
+			        new Optional(fragment1, sequenceDiagram1), 
+			        new Optional(fragment2, sequenceDiagram2)), 
 			"<Fragments>"
-			+ "<Optional name=\"default\" representedBy=\"default\"/>"
-			+ "<Optional name=\"default2\" representedBy=\"default\"/>"
+			+ "<Optional name=\"fragment1\" representedBy=\"diagram1\"/>"
+			+ "<Optional name=\"fragment2\" representedBy=\"diagram2\"/>"
 			+ "</Fragments>"},
 			{ Arrays.asList(
-					new Optional(DEFAULT_NAME, sequenceDiagram), 
-					new Optional(DEFAULT_NAME + "2", sequenceDiagram),
-					new Optional(DEFAULT_NAME + "3", sequenceDiagram)), 
+			        new Optional(fragment1, sequenceDiagram1), 
+			        new Optional(fragment2, sequenceDiagram2),
+			        new Optional(fragment3, sequenceDiagram3)),
 			"<Fragments>"
-			+ "<Optional name=\"default\" representedBy=\"default\"/>"
-			+ "<Optional name=\"default2\" representedBy=\"default\"/>"
-			+ "<Optional name=\"default3\" representedBy=\"default\"/>"
+			+ "<Optional name=\"fragment1\" representedBy=\"diagram1\"/>"
+			+ "<Optional name=\"fragment2\" representedBy=\"diagram2\"/>"
+			+ "<Optional name=\"fragment3\" representedBy=\"diagram3\"/>"
 			+ "</Fragments>" }
 		});
 	}

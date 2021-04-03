@@ -39,6 +39,15 @@ public class SequenceDiagram extends BaseElement {
 	    return elements;
 	}
 	
+	public ISequenceDiagramElement getElement(ISequenceDiagramElement searchedElement) {
+        for (ISequenceDiagramElement element : elements) {
+            if (element.equals(searchedElement)) {
+                return element;
+            }
+        }
+        return null;
+    }
+
 	@Override
 	public String toString() {
 		String representantion = "<SequenceDiagram " + 

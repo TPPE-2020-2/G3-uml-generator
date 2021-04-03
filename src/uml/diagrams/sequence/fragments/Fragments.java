@@ -5,6 +5,7 @@ import java.util.List;
 
 import uml.diagrams.sequence.BaseGroup;
 import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
+import uml.diagrams.sequence.sequencediagrams.fragments.Fragment;
 
 public class Fragments extends BaseGroup {
 	
@@ -26,8 +27,13 @@ public class Fragments extends BaseGroup {
 		return optionals;
 	}
 	
-	public Optional getOptional(String optionalName) {
-	    return findNode(optionals, elem -> elem.getName() == optionalName);
+	public Optional getOptional(Fragment fragment) {
+	    for (Optional optional : optionals) {
+	        if (optional.getFragment().equals(fragment)) {
+	            return optional;
+	        }
+	    }
+	    return null;
     }
 	
 	@Override
