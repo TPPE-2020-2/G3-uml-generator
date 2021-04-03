@@ -10,7 +10,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -57,7 +56,7 @@ public class ActivityDiagramTransitionsValidationsTest {
 		diagramTransitions = new ActivityDiagramTransitions();
 	}
 	
-	public static Collection validScenarios() throws ActivityDiagramRuleException {
+	public static Collection<Object[]> validScenarios() throws ActivityDiagramRuleException {
 		return Arrays.asList(new Object[][] {
 			{ Arrays.asList(
 					new TransitionTempHolder(NAME, PROB, startNode, activityNode))},
@@ -95,7 +94,7 @@ public class ActivityDiagramTransitionsValidationsTest {
 		});
 	}
 	
-	public static Collection invalidScenarios() throws ActivityDiagramRuleException {
+	public static Collection<Object[]> invalidScenarios() throws ActivityDiagramRuleException {
 		return Arrays.asList(new Object[][] {
 	        { Arrays.asList(
 	        		new TransitionTempHolder(NAME, PROB, startNode, activityNode),

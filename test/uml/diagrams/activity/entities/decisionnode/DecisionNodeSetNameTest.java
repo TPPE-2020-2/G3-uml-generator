@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -23,7 +22,7 @@ class DecisionNodeSetNameTest {
 		decisionNode = new DecisionNode(INITIAL_NAME);
 	}
 
-	public static Collection decisionNodeNames() {
+	public static Collection<Object[]> decisionNodeNames() {
 		return Arrays.asList(new Object[][] {
 	        { "name" },
 	        { "decisionNode" },

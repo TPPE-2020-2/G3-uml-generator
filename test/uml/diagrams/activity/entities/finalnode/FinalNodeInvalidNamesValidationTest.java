@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -20,7 +18,7 @@ class FinalNodeInvalidNamesValidationTest {
 
 	private FinalNode finalNode;
 	
-	public static Collection emptyValues() {
+	public static Collection<Object[]> emptyValues() {
 		return Arrays.asList(new Object[][] {
 	        { "" },
 	        { null }

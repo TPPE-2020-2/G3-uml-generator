@@ -15,7 +15,7 @@ class FinalNodeToStringTest {
 
 	private FinalNode finalNode;
 
- 	public static Collection finalNodeNames() {
+ 	public static Collection<Object[]> finalNodeNames() {
 		return Arrays.asList(new Object[][] {
 	        { "name", "<FinalNode name=\"name\" />" },
 	        { "finalNode", "<FinalNode name=\"finalNode\" />" },

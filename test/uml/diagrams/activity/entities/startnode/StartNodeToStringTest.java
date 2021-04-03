@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -17,7 +15,7 @@ class StartNodeToStringTest {
 
 	private StartNode initialNode;
 	
- 	public static Collection startNodeNames() {
+ 	public static Collection<Object[]> startNodeNames() {
 		return Arrays.asList(new Object[][] {
 	        { "name", "<StartNode name=\"name\" />" },
 	        { "initialNode", "<StartNode name=\"initialNode\" />" },

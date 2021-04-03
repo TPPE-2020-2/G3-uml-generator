@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import uml.diagrams.activity.entities.ActivityNode;
-import uml.diagrams.activity.entities.BaseNode;
 import uml.diagrams.activity.entities.DecisionNode;
 import uml.diagrams.activity.entities.FinalNode;
 import uml.diagrams.activity.entities.MergeNode;

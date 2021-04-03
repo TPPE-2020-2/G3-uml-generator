@@ -2,7 +2,6 @@ package uml.diagrams.activity.diagramtransitions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -17,7 +16,6 @@ import uml.diagrams.activity.entities.ActivityNode;
 import uml.diagrams.activity.entities.DecisionNode;
 import uml.diagrams.activity.entities.FinalNode;
 import uml.diagrams.activity.entities.MergeNode;
-import uml.diagrams.activity.entities.StartNode;
 import uml.diagrams.activity.exceptions.ActivityDiagramRuleException;
 
 public class ActivityDiagramTransitionsRemoveTest {
@@ -27,7 +25,6 @@ public class ActivityDiagramTransitionsRemoveTest {
 	private final static String NAME = "transition";
 	private final static Float PROB = 0.5f;
 	
-	private static StartNode startNode;
 	private static ActivityNode activityNode;
 	private static DecisionNode decisionNode;
 	private static MergeNode mergeNode;
@@ -35,7 +32,6 @@ public class ActivityDiagramTransitionsRemoveTest {
 	
 	@BeforeAll
 	public static void initialSetup() throws ActivityDiagramRuleException {
-		startNode = new StartNode("start");
 		activityNode = new ActivityNode("activity");
 		decisionNode = new DecisionNode("decision");
 		mergeNode = new MergeNode("merge");
@@ -47,7 +43,7 @@ public class ActivityDiagramTransitionsRemoveTest {
 		diagramTransitions = new ActivityDiagramTransitions();
 	}
 	
-	public static Collection validScenarios() throws ActivityDiagramRuleException {
+	public static Collection<Object[]> validScenarios() throws ActivityDiagramRuleException {
 		return Arrays.asList(new Object[][] {
 	        { Arrays.asList(
 	        		new TransitionTempHolder(NAME, PROB, activityNode, finalNode)), NAME, 0},

@@ -87,7 +87,8 @@ public class ActivityDiagram extends BaseNode {
 		
 	}
 
-	private void validateNodesTransitions(List<Transition> transitions, Class typeClass) throws ActivityDiagramRuleException {
+	@SuppressWarnings("rawtypes")
+    private void validateNodesTransitions(List<Transition> transitions, Class typeClass) throws ActivityDiagramRuleException {
 		List<Transition> sourceTransitions = filterTransitionsByPredicate(transitions, 
 					(elem) -> elem.getSource().getClass() == typeClass);
 		
@@ -108,7 +109,8 @@ public class ActivityDiagram extends BaseNode {
 					sourceTransitions, targetTransitions, typeClass);
 	}
 	
-	private <T extends BaseNode> void validateFowardAndBackwardNode(
+	@SuppressWarnings("rawtypes")
+    private <T extends BaseNode> void validateFowardAndBackwardNode(
 			List<T> nodes, List<Transition> activitySourceTransitions, List<Transition> activityTargetTransitions, Class className) 
 				throws ActivityDiagramRuleException {
 		for (T tempNode: nodes) {

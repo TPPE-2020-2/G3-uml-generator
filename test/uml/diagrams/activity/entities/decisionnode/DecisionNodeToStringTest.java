@@ -15,7 +15,7 @@ class DecisionNodeToStringTest {
 
 	private DecisionNode decisionNode;
 
- 	public static Collection decisionNodeNames() {
+ 	public static Collection<Object[]> decisionNodeNames() {
 		return Arrays.asList(new Object[][] {
 	        { "name", "<DecisionNode name=\"name\" />" },
 	        { "decisionNode", "<DecisionNode name=\"decisionNode\" />" },

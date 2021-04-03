@@ -15,7 +15,7 @@ class MergeNodeToStringTest {
 
 	private MergeNode mergeNode;
 
- 	public static Collection mergeNodeNames() {
+ 	public static Collection<Object[]> mergeNodeNames() {
 		return Arrays.asList(new Object[][] {
 	        { "name", "<MergeNode name=\"name\" />" },
 	        { "mergeNode", "<MergeNode name=\"mergeNode\" />" },

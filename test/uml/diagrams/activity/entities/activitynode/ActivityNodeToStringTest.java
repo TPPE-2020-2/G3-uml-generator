@@ -15,7 +15,7 @@ class ActivityNodeToStringTest {
 
 	private ActivityNode activityNode;
 
- 	public static Collection activityNodeNames() {
+ 	public static Collection<Object[]> activityNodeNames() {
 		return Arrays.asList(new Object[][] {
 	        { "name", "<Activity name=\"name\" />" },
 	        { "activityNode", "<Activity name=\"activityNode\" />" },

@@ -1,7 +1,5 @@
-package uml.diagrams.activity.utils;
+package uml.diagrams.utils;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
@@ -9,7 +7,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -26,9 +23,8 @@ import uml.diagrams.activity.entities.MergeNode;
 import uml.diagrams.activity.entities.StartNode;
 import uml.diagrams.activity.entities.Transition;
 import uml.diagrams.activity.exceptions.ActivityDiagramRuleException;
-import uml.diagrams.utils.XMLUtils;
 
-public class XMLUtilsTest {
+public class ActivityDiagramXMLTest {
 	
 private ActivityDiagram activityDiagram;
 	

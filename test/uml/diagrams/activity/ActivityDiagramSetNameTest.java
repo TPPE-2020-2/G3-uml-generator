@@ -21,7 +21,7 @@ public class ActivityDiagramSetNameTest {
 		activityDiagram = new ActivityDiagram(DEFAULT_NAME);
 	}
 
-	public static Collection activityDiagramNames() {
+	public static Collection<Object[]> activityDiagramNames() {
 		return Arrays.asList(new Object[][] {
 	        { "name" },
 	        { "activityNode" },

@@ -22,7 +22,7 @@ class MergeNodeSetNameTest {
 		mergeNode = new MergeNode(INITIAL_NAME);
 	}
 
-	public static Collection mergeNodeNames() {
+	public static Collection<Object[]> mergeNodeNames() {
 		return Arrays.asList(new Object[][] {
 	        { "name" },
 	        { "mergeNode" },
