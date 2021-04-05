@@ -14,6 +14,9 @@ import uml.diagrams.sequence.lifelines.Lifeline;
 import uml.diagrams.sequence.sequencediagrams.SequenceDiagram;
 import uml.diagrams.sequence.sequencediagrams.fragments.Fragment;
 import uml.diagrams.sequence.sequencediagrams.messages.Message;
+import uml.diagrams.sequence.sequencediagrams.messages.MessageAsync;
+import uml.diagrams.sequence.sequencediagrams.messages.MessageSync;
+import uml.diagrams.sequence.sequencediagrams.messages.Reply;
 import uml.diagrams.sequence.fragments.Optional;
 
 public class MenuSequenceDiagram {
@@ -173,36 +176,11 @@ public class MenuSequenceDiagram {
 		System.out.println("[1] Adicionar Mensagens");
 		System.out.println("[2] Adicionar Fragmento");
 		System.out.println("[3] Retornar ao menu anterior");
-		
+
 		int num1 = sc.nextInt();
 		switch (num1) {
         case 1: {
-            System.out.println("Insira o nome da mensagem");
-            String name1 = getInputFromConsole();
-            System.out.println("Insira o valor da probablilidade");
-            Float prob = sc.nextFloat();
-            
-            System.out.println("Lifelines disponíveis");
-            List<Lifeline> lifelines = sequenceDiagramGroup.getLifelines().getLifelines();
-            
-            if (lifelines != null && !lifelines.isEmpty()) {      
-                for (int i = 0; i < lifelines.size(); i++) {
-                    System.out.printf("[%d] = %s\n", i, lifelines.get(i).getName());
-                }
-            } else {
-                printLine("Nao ha lifelines disponiveis");
-                break;
-            }
-            
-            System.out.println("Selecione o Lifeline de Origem");
-            Lifeline source = getLifelineByOption();
-            
-            System.out.println("Selecione o Lifeline de Destino");
-            Lifeline target = getLifelineByOption();
-            
-            Message message = new Message(name1, prob, source, target);
-            diagram.addElement(message);
-            
+            addMessage(diagram);
             break;
         }
         case 2: {
@@ -232,6 +210,59 @@ public class MenuSequenceDiagram {
 		menuAddSequenceDiagramElements(diagram);
 	}
 	
+	private void addMessage(SequenceDiagram diagram)
+	        throws MessageFormatException, SequenceDiagramRuleException {        
+	    System.out.println("Insira o nome da mensagem");
+        String name1 = getInputFromConsole();
+        System.out.println("Insira o valor da probablilidade");
+        Float prob = sc.nextFloat();
+        
+        System.out.println("Lifelines disponíveis");
+        List<Lifeline> lifelines = sequenceDiagramGroup.getLifelines().getLifelines();
+        
+        if (lifelines != null && !lifelines.isEmpty()) {      
+            for (int i = 0; i < lifelines.size(); i++) {
+                System.out.printf("[%d] = %s\n", i, lifelines.get(i).getName());
+            }
+        } else {
+            printLine("Nao ha lifelines disponiveis");
+            return;
+        }
+        
+        System.out.println("Selecione o Lifeline de Origem");
+        Lifeline source = getLifelineByOption();
+        
+        System.out.println("Selecione o Lifeline de Destino");
+        Lifeline target = getLifelineByOption();
+
+        System.out.println("Escolha o tipo da Mensagem: ");
+        System.out.println("[1] Mensagem Sincrona");
+        System.out.println("[2] Mensagem Assincrona");
+        System.out.println("[3] Resposta");
+	    
+        Message message = null;
+	    int option = sc.nextInt();
+
+	    switch (option) {
+        case 1: {
+            message = new MessageSync(name1, prob, source, target);
+            break;
+    	}
+        case 2: {
+            message = new MessageAsync(name1, prob, source, target);
+            break;
+        }
+        case 3: {
+            message = new Reply(name1, prob, source, target);
+            break;
+        }
+        default:
+            throw new IllegalArgumentException("Unexpected value: " + option);
+	    }
+	    
+	    diagram.addElement(message);
+    }
+
 	private Optional getOptionalByOption() {
         List<Optional> optionals = sequenceDiagramGroup.getFragments().getOptionals();
         int option = sc.nextInt();
