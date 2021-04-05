@@ -102,11 +102,18 @@ public class MenuSequenceDiagram {
         } else if (option == 2) {
             printLine("Escolha o diagrama de sequência (por índice): ");
             int i = 0;
-            for (SequenceDiagram diag: sequenceDiagramGroup.getSequenceDiagrams()) {
-                printLine("[" + i++ + "] " + diag.getName());
-            }
+            List<SequenceDiagram> sequenceDiagrams = sequenceDiagramGroup.getSequenceDiagrams();
             
-            diagram = sequenceDiagramGroup.getSequenceDiagrams().get(sc.nextInt());
+            if (sequenceDiagrams != null && !sequenceDiagrams.isEmpty()) {             
+                for (SequenceDiagram diag: sequenceDiagramGroup.getSequenceDiagrams()) {
+                    printLine("[" + i++ + "] " + diag.getName());
+                }
+                
+                diagram = sequenceDiagramGroup.getSequenceDiagrams().get(sc.nextInt());
+            } else {
+                printLine("Nao ha diagramas disponiveis");
+                return;
+            }
         } else {
             printLine("Opção inválida. Retornando ao menu...");
             return;
@@ -125,29 +132,35 @@ public class MenuSequenceDiagram {
 	
 	private void addOptional() throws SequenceDiagramRuleException, EmptyOptionalFragmentException, MessageFormatException {
 		System.out.println("Menu: Criar Optional");
-		System.out.println("Escolha o diagrama de sequencia");
 		
-		System.out.println("Digite o nome do Diagrama de Sequencia:");
+		System.out.println("Digite o nome do Diagrama de Sequencia: ");
         String optionalName = getInputFromConsole();
 		
+        System.out.println("Escolha o diagrama de sequencia: ");
 		List<SequenceDiagram> sequenceDiagrams = sequenceDiagramGroup.getSequenceDiagrams();
-		for(int i = 0; i < sequenceDiagrams.size(); i++) {
-            System.out.printf("[%d] = %s\n", i, sequenceDiagrams.get(i).getName());
+		
+		if (sequenceDiagrams != null && !sequenceDiagrams.isEmpty()) {             
+		    for(int i = 0; i < sequenceDiagrams.size(); i++) {
+	            System.out.printf("[%d] = %s\n", i, sequenceDiagrams.get(i).getName());
+	        }
+            
+		    int seqDiagramOption = sc.nextInt();
+	        SequenceDiagram chosenSeqDiagram = null;
+	        
+	        if (seqDiagramOption >= 0 && seqDiagramOption < sequenceDiagrams.size()) {
+	            chosenSeqDiagram = sequenceDiagrams.get(seqDiagramOption);
+	        } else {
+	            System.out.println("Diagrama Invalido");
+	            addOptional();
+	        }
+	        
+	        Optional optional = new Optional(optionalName, chosenSeqDiagram);
+	        
+	        sequenceDiagramGroup.addOptional(optional);
+        } else {
+            printLine("Nao ha diagramas disponiveis");
+            return;
         }
-		
-		int seqDiagramOption = sc.nextInt();
-		SequenceDiagram chosenSeqDiagram = null;
-		
-		if (seqDiagramOption >= 0 && seqDiagramOption < sequenceDiagrams.size()) {
-		    chosenSeqDiagram = sequenceDiagrams.get(seqDiagramOption);
-		} else {
-		    System.out.println("Diagrama Invalido");
-		    addOptional();
-		}
-		
-		Optional optional = new Optional(optionalName, chosenSeqDiagram);
-		
-		sequenceDiagramGroup.addOptional(optional);
 	}
 	
 	private void showDiagram() {
@@ -170,15 +183,22 @@ public class MenuSequenceDiagram {
             Float prob = sc.nextFloat();
             
             System.out.println("Lifelines disponíveis");
-            showLifelines();
+            List<Lifeline> lifelines = sequenceDiagramGroup.getLifelines().getLifelines();
+            
+            if (lifelines != null && !lifelines.isEmpty()) {      
+                for (int i = 0; i < lifelines.size(); i++) {
+                    System.out.printf("[%d] = %s\n", i, lifelines.get(i).getName());
+                }
+            } else {
+                printLine("Nao ha lifelines disponiveis");
+                break;
+            }
             
             System.out.println("Selecione o Lifeline de Origem");
             Lifeline source = getLifelineByOption();
-            sequenceDiagramGroup.addLifeline(source);
             
             System.out.println("Selecione o Lifeline de Destino");
             Lifeline target = getLifelineByOption();
-            sequenceDiagramGroup.addLifeline(target);
             
             Message message = new Message(name1, prob, source, target);
             diagram.addElement(message);
@@ -189,13 +209,17 @@ public class MenuSequenceDiagram {
             System.out.println("Escolha o Optional associado");
             List<Optional> optionals = sequenceDiagramGroup.getFragments().getOptionals();
             
-            for (int i = 0; i < optionals.size(); i++) {
-                System.out.printf("[%d] = %s\n", i, optionals.get(i).getName());
+            if (optionals != null && !optionals.isEmpty()) {                
+                for (int i = 0; i < optionals.size(); i++) {
+                    System.out.printf("[%d] = %s\n", i, optionals.get(i).getName());
+                }
+                Optional optional = getOptionalByOption();
+                
+                diagram.addElement(new Fragment(optional));
+            } else {
+                printLine("Nao ha optionals disponiveis");
             }
-            
-            Optional optional = getOptionalByOption();
-            
-            diagram.addElement(new Fragment(optional));
+
             break;
         }
         case 3: {
@@ -206,13 +230,6 @@ public class MenuSequenceDiagram {
 		}
 		
 		menuAddSequenceDiagramElements(diagram);
-	}
-	
-	private void showLifelines() {
-	    List<Lifeline> lifelines = sequenceDiagramGroup.getLifelines().getLifelines();
-	    for (int i = 0; i < lifelines.size(); i++) {
-	        System.out.printf("[%d] = %s\n", i, lifelines.get(i).getName());
-	    }
 	}
 	
 	private Optional getOptionalByOption() {
