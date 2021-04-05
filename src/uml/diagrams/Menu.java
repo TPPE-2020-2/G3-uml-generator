@@ -48,25 +48,26 @@ public class Menu {
 			try {
 				createActivityDiagram();
 			} catch (ActivityDiagramRuleException e) {
-				e.printStackTrace();
+				printLine("Ocorreu um erro inesperado::" + e.toString());
+				printLine("Retornando ao menu inicial...");
 			}
 			break;
 		}
 		case 2: {
-		    try {
-		        createSequenceDiagramGroup();
-		    } catch (SequenceDiagramRuleException | EmptyOptionalFragmentException | MessageFormatException e) {
-		        printLine(e.getMessage());
-            } catch (Exception e) {
-                printLine("Erro desconhecido ao criar o Diagrama de Sequencia. " + e);
-            }
+			try {
+				createSequenceDiagramGroup();
+			} catch (SequenceDiagramRuleException | EmptyOptionalFragmentException | MessageFormatException e) {
+				printLine("Ocorreu um erro inesperado::" + e.toString());
+				printLine("Retornando ao menu inicial...");
+			}
+			break;
 		}
 		case 3: {
 			try {
 				validateDiagrams();
 			} catch (ActivityDiagramRuleException | ActivityRepresentationException e) {
-				printLine("O seguinte problema foi encontrado::");
-				printLine(e.toString());
+				printLine("O seguinte problema foi encontrado::" + e.toString());
+				printLine("Retornando ao menu inicial...");
 			}
 			break;
 		}
@@ -76,13 +77,14 @@ public class Menu {
 				generateXML();
 			} catch (ActivityDiagramRuleException | ActivityRepresentationException | ParserConfigurationException
 					| SAXException | IOException | TransformerException e) {
-				printLine("O seguinte problema foi encontrado ao tentar gerar o XML::");
-				printLine(e.toString());
+				printLine("O seguinte problema foi encontrado ao tentar gerar o XML::" + e.toString());
+				printLine("Retornando ao menu inicial...");
 			}
 		}
 		default:
-			throw new IllegalArgumentException("Unexpected value: " + num1);
+			printLine("Opção inválida:: " + num1);
 		}
+		menu();
 	}
 
 	private void createActivityDiagram() throws ActivityDiagramRuleException {
@@ -194,43 +196,43 @@ public class Menu {
 		int num1 = sc.nextInt();
 
 		switch (num1) {
-		case 1: {
-			return this.activityDiagram.getActivityDiagramElements().getStartNode();
-		}
-		case 2: {
-			printLine("Digite o índice do activity node:");
-			int i = 0;
-			for (ActivityNode node : this.activityDiagram.getActivityDiagramElements().getActivityNodes()) {
-				printLine("[" + i++ + "]" + node.getName());
+			case 1: {
+				return this.activityDiagram.getActivityDiagramElements().getStartNode();
 			}
-			return this.activityDiagram.getActivityDiagramElements().getActivityNodes().get(sc.nextInt());
-		}
-		case 3: {
-			printLine("Digite o índice do Decision node:");
-			int i = 0;
-			for (DecisionNode node : this.activityDiagram.getActivityDiagramElements().getDecisionNodes()) {
-				printLine("[" + i++ + "]" + node.getName());
+			case 2: {
+				printLine("Digite o índice do activity node:");
+				int i = 0;
+				for (ActivityNode node : this.activityDiagram.getActivityDiagramElements().getActivityNodes()) {
+					printLine("[" + i++ + "]" + node.getName());
+				}
+				return this.activityDiagram.getActivityDiagramElements().getActivityNodes().get(sc.nextInt());
 			}
-			return this.activityDiagram.getActivityDiagramElements().getDecisionNodes().get(sc.nextInt());
-		}
-		case 4: {
-			printLine("Digite o índice do Merge node:");
-			int i = 0;
-			for (DecisionNode node : this.activityDiagram.getActivityDiagramElements().getDecisionNodes()) {
-				printLine("[" + i++ + "]" + node.getName());
+			case 3: {
+				printLine("Digite o índice do Decision node:");
+				int i = 0;
+				for (DecisionNode node : this.activityDiagram.getActivityDiagramElements().getDecisionNodes()) {
+					printLine("[" + i++ + "]" + node.getName());
+				}
+				return this.activityDiagram.getActivityDiagramElements().getDecisionNodes().get(sc.nextInt());
 			}
-			return this.activityDiagram.getActivityDiagramElements().getDecisionNodes().get(sc.nextInt());
-		}
-		case 5: {
-			printLine("Digite o índice do Final node:");
-			int i = 0;
-			for (FinalNode node : this.activityDiagram.getActivityDiagramElements().getFinalNodes()) {
-				printLine("[" + i++ + "]" + node.getName());
+			case 4: {
+				printLine("Digite o índice do Merge node:");
+				int i = 0;
+				for (DecisionNode node : this.activityDiagram.getActivityDiagramElements().getDecisionNodes()) {
+					printLine("[" + i++ + "]" + node.getName());
+				}
+				return this.activityDiagram.getActivityDiagramElements().getDecisionNodes().get(sc.nextInt());
 			}
-			return this.activityDiagram.getActivityDiagramElements().getFinalNodes().get(sc.nextInt());
-		}
-		default:
-			throw new IllegalArgumentException("Unexpected value: " + num1);
+			case 5: {
+				printLine("Digite o índice do Final node:");
+				int i = 0;
+				for (FinalNode node : this.activityDiagram.getActivityDiagramElements().getFinalNodes()) {
+					printLine("[" + i++ + "]" + node.getName());
+				}
+				return this.activityDiagram.getActivityDiagramElements().getFinalNodes().get(sc.nextInt());
+			}
+			default:
+				throw new IllegalArgumentException("Unexpected value: " + num1);
 		}
 	}
 
@@ -238,7 +240,9 @@ public class Menu {
 		if (this.activityDiagram == null && this.sequenceDiagramGroup == null)
 			throw new Error("Nenhum diagrama adicionado ainda. Crie um diagrama para poder realizar a validação...");
 		else if (this.activityDiagram != null && this.sequenceDiagramGroup == null)
-			throw new ActivityRepresentationException("O diagrama de sequência não possui um de sequência associado");
+			throw new ActivityRepresentationException("O diagrama de atividades não possui um de sequência associado");
+		else if (this.activityDiagram == null && this.sequenceDiagramGroup != null)
+			throw new ActivityRepresentationException("O diagrama de sequência não possui um de atividades associado");
 
 		this.activityDiagram.validateActivityDiagram();
 	}
@@ -250,9 +254,9 @@ public class Menu {
 
 		XMLUtils.generateXML(this.activityDiagram.toString(), activityPath);
 		XMLUtils.generateXML(this.sequenceDiagramGroup.toString(), sequencePath);
-		
-		printLine("Diagrama de atividade salvo em:: "+ activityPath);
-		printLine("Diagrama de sequência salvo em:: "+ sequencePath);
+
+		printLine("Diagrama de atividade salvo em:: " + activityPath);
+		printLine("Diagrama de sequência salvo em:: " + sequencePath);
 	}
 
 	private void printLine(String text) {
