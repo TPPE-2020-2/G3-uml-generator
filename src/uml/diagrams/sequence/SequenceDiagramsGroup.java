@@ -47,6 +47,10 @@ public class SequenceDiagramsGroup extends BaseGroup {
         return findNode(sequenceDiagrams, elem -> elem.getName() == sequenceDiagramName);
     }
     
+    public int getListSize() {
+    	return sequenceDiagrams.size();
+    }
+    
     @Override
     public String toString() {
         String sequenceDiagramsString = "";
