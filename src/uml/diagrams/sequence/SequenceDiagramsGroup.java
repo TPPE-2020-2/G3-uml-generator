@@ -44,10 +44,18 @@ public class SequenceDiagramsGroup extends BaseGroup {
     }
 
     public SequenceDiagram getSequenceDiagram(String sequenceDiagramName) {
-        return findNode(sequenceDiagrams, elem -> elem.getName() == sequenceDiagramName);
+        return findNode(sequenceDiagrams, elem -> elem.getName().equals(sequenceDiagramName));
     }
     
-    @Override
+    public List<SequenceDiagram> getSequenceDiagrams() {
+		return sequenceDiagrams;
+	}
+
+	public void setSequenceDiagrams(List<SequenceDiagram> sequenceDiagrams) {
+		this.sequenceDiagrams = sequenceDiagrams;
+	}
+
+	@Override
     public String toString() {
         String sequenceDiagramsString = "";
         

@@ -26,4 +26,8 @@ public class BaseElement {
             throw new SequenceDiagramRuleException(NAME_ERROR);
         }
     }
+
+	public Boolean equals(BaseElement element) {
+		return this.getName().equals(element.getName());
+	}
 }
