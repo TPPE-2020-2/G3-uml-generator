@@ -40,9 +40,9 @@ public class SequenceDiagramsGroupCreateElementsTest {
         lifeline = new Lifeline(DEFAULT_NAME);
         sequenceDiagram1 = new SequenceDiagram("diagram1", true);
         sequenceDiagram2 = new SequenceDiagram("diagram2", false);
-        fragment = new Fragment("fragment");
         sequenceDiagram1.addElement(fragment);
-        optional = new Optional(fragment, sequenceDiagram1);
+        optional = new Optional("fragment", sequenceDiagram1);
+        fragment = new Fragment(optional);
         message = new Message(DEFAULT_NAME, DEFAULT_PROB, lifeline, lifeline);
     }
 
@@ -62,7 +62,7 @@ public class SequenceDiagramsGroupCreateElementsTest {
 
         assertEquals(
                 optional,
-                sequenceDiagramsGroup.getOptionals().getOptional(optional.getFragment())
+                sequenceDiagramsGroup.getFragments().getOptional(optional.getName())
         );
     }
 

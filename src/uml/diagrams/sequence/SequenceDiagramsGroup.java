@@ -35,7 +35,7 @@ public class SequenceDiagramsGroup extends BaseGroup {
         fragments.addOptional(optional);        
     }
 
-    public Fragments getOptionals() {
+    public Fragments getFragments() {
         return fragments;
     }
 

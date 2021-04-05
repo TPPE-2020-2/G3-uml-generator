@@ -27,17 +27,17 @@ public class FragmentsToStringTest {
 
 	public static Collection<Object[]> optionalParams()
 	        throws SequenceDiagramRuleException, EmptyOptionalFragmentException {
-	    Fragment fragment1 = new Fragment("fragment1");
-        Fragment fragment2 = new Fragment("fragment2");
-        Fragment fragment3 = new Fragment("fragment3");
         SequenceDiagram sequenceDiagram1 = new SequenceDiagram("diagram1", true);
         SequenceDiagram sequenceDiagram2 = new SequenceDiagram("diagram2", false);
         SequenceDiagram sequenceDiagram3 = new SequenceDiagram("diagram3", true);
+        Fragment fragment1 = new Fragment(new Optional("fragment1", sequenceDiagram1));
+        Fragment fragment2 = new Fragment(new Optional("fragment2", sequenceDiagram2));
+        Fragment fragment3 = new Fragment(new Optional("fragment3", sequenceDiagram3));
         
-        sequenceDiagram1.addElement(fragment1);
+        sequenceDiagram1.addElement(fragment2);
 
         sequenceDiagram2.addElement(fragment1);
-        sequenceDiagram2.addElement(fragment2);
+        sequenceDiagram2.addElement(fragment3);
 
         sequenceDiagram3.addElement(fragment1);
         sequenceDiagram3.addElement(fragment2);
@@ -46,19 +46,19 @@ public class FragmentsToStringTest {
 		return Arrays.asList(new Object[][] {
 			{ new ArrayList<Optional>(), "<Fragments></Fragments>"},
 			{ Arrays.asList(
-			        new Optional(fragment1, sequenceDiagram1)), 
+			        new Optional("fragment1", sequenceDiagram1)), 
 			"<Fragments><Optional name=\"fragment1\" representedBy=\"diagram1\"/></Fragments>"},
 			{ Arrays.asList(
-			        new Optional(fragment1, sequenceDiagram1), 
-			        new Optional(fragment2, sequenceDiagram2)), 
+			        new Optional("fragment1", sequenceDiagram1), 
+			        new Optional("fragment2", sequenceDiagram2)), 
 			"<Fragments>"
 			+ "<Optional name=\"fragment1\" representedBy=\"diagram1\"/>"
 			+ "<Optional name=\"fragment2\" representedBy=\"diagram2\"/>"
 			+ "</Fragments>"},
 			{ Arrays.asList(
-			        new Optional(fragment1, sequenceDiagram1), 
-			        new Optional(fragment2, sequenceDiagram2),
-			        new Optional(fragment3, sequenceDiagram3)),
+			        new Optional("fragment1", sequenceDiagram1), 
+			        new Optional("fragment2", sequenceDiagram2),
+			        new Optional("fragment3", sequenceDiagram3)),
 			"<Fragments>"
 			+ "<Optional name=\"fragment1\" representedBy=\"diagram1\"/>"
 			+ "<Optional name=\"fragment2\" representedBy=\"diagram2\"/>"

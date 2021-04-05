@@ -8,7 +8,10 @@ import java.util.Collection;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import uml.diagrams.sequence.exceptions.EmptyOptionalFragmentException;
 import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
+import uml.diagrams.sequence.fragments.Optional;
+import uml.diagrams.sequence.sequencediagrams.SequenceDiagram;
 
 public class FragmentToStringTest {
 
@@ -22,8 +25,10 @@ public class FragmentToStringTest {
     @ParameterizedTest
     @MethodSource("fragmentParams")
     void testFragmentToString(String name, String expectedOutput)
-            throws SequenceDiagramRuleException {
-        Fragment fragment = new Fragment (name);
+            throws SequenceDiagramRuleException, EmptyOptionalFragmentException {
+        SequenceDiagram sequenceDiagram = new SequenceDiagram("diagram", true);
+        Fragment fragment = new Fragment (new Optional(name, sequenceDiagram));
+        
         assertEquals(expectedOutput, fragment.toString());
     }
 }
