@@ -1,6 +1,6 @@
 package uml.diagrams;
 
-import uml.diagrams.Menu;
+import uml.diagrams.MenuSequenceDiagram;
 
 import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
 
