@@ -20,11 +20,12 @@ import uml.diagrams.activity.entities.DecisionNode;
 import uml.diagrams.activity.entities.FinalNode;
 import uml.diagrams.activity.entities.MergeNode;
 import uml.diagrams.activity.entities.StartNode;
-import uml.diagrams.activity.entities.Transition;
 import uml.diagrams.activity.exceptions.ActivityDiagramRuleException;
 import uml.diagrams.activity.exceptions.ActivityRepresentationException;
 import uml.diagrams.sequence.SequenceDiagramsGroup;
-import uml.diagrams.sequence.sequencediagrams.SequenceDiagram;
+import uml.diagrams.sequence.exceptions.EmptyOptionalFragmentException;
+import uml.diagrams.sequence.exceptions.MessageFormatException;
+import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
 
 public class Menu {
 
@@ -52,7 +53,13 @@ public class Menu {
 			break;
 		}
 		case 2: {
-			createSequenceDiagram();
+		    try {
+		        createSequenceDiagramGroup();
+		    } catch (SequenceDiagramRuleException | EmptyOptionalFragmentException | MessageFormatException e) {
+		        printLine(e.getMessage());
+            } catch (Exception e) {
+                printLine("Erro desconhecido ao criar o Diagrama de Sequencia. " + e);
+            }
 		}
 		case 3: {
 			try {
@@ -86,8 +93,17 @@ public class Menu {
 			printLine("Já existe um diagrama de atividade com o nome: " + this.activityDiagram.getName());
 
 		addElementToActivityDiagram();
-
 	}
+	
+	private void createSequenceDiagramGroup()
+            throws SequenceDiagramRuleException, EmptyOptionalFragmentException, MessageFormatException {
+        if (sequenceDiagramGroup == null) {
+            sequenceDiagramGroup = new MenuSequenceDiagram().createSequenceDiagramGroup();
+        }
+        else {
+            System.out.println("Ja existe um Grupo de Diagrama de Sequencia");
+        }
+    }
 
 	private void addElementToActivityDiagram() throws ActivityDiagramRuleException {
 		printLine("[1] Adicionar Start Node: ");
@@ -167,7 +183,7 @@ public class Menu {
 		}
 	}
 
-	public BaseNode getElement() {
+	private BaseNode getElement() {
 		printLine("Escolha o tipo do elemento: ");
 		printLine("[1] Start node");
 		printLine("[2] Activity Node: ");
@@ -216,14 +232,6 @@ public class Menu {
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + num1);
 		}
-	}
-
-	private void createSequenceDiagram() {
-		if (this.sequenceDiagramGroup == null)
-			this.sequenceDiagramGroup = new SequenceDiagramsGroup();
-		else
-			printLine("Já existe um diagrama de sequência");
-
 	}
 
 	private void validateDiagrams() throws ActivityDiagramRuleException, ActivityRepresentationException {
