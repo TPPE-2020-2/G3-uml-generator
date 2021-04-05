@@ -44,10 +44,13 @@ public class SequenceDiagram extends BaseElement {
             if (element.equals(searchedElement)) {
                 return element;
             }
+            else {
+    			System.out.printf("element !== searchedElement = %s, %s\n", element, searchedElement);
+            }
         }
         return null;
     }
-
+	
 	@Override
 	public String toString() {
 		String representantion = "<SequenceDiagram " + 

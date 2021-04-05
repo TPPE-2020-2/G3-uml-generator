@@ -7,8 +7,8 @@ import uml.diagrams.sequence.sequencediagrams.fragments.Fragment;
 
 public class Optional {
     
-    static final String FRAGMENT_ERROR = "É necessário informar um fragmento válido que esteja dentro do diagrama de sequência associado";
-    static final String REPRESENTED_BY_ERROR = "É necessário informar o diagrama de sequência associado";
+    static final String FRAGMENT_ERROR = "E necessario informar um fragmento valido que esteja dentro do diagrama de sequencia associado";
+    static final String REPRESENTED_BY_ERROR = "Nnecessario informar o diagrama de sequencia associado";
     
     private Fragment fragment;
 	private SequenceDiagram representedBy;
@@ -21,6 +21,7 @@ public class Optional {
 	
 	public void setFragment(Fragment fragment) throws SequenceDiagramRuleException {
 	    if (fragment == null || representedBy.getElement(fragment) == null) {
+			System.out.println("fragment == null = " + fragment == null);
 	        throw new SequenceDiagramRuleException(FRAGMENT_ERROR);
 	    }
 	    
