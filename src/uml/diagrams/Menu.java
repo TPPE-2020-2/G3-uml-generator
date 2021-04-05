@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -22,21 +20,12 @@ import uml.diagrams.activity.entities.DecisionNode;
 import uml.diagrams.activity.entities.FinalNode;
 import uml.diagrams.activity.entities.MergeNode;
 import uml.diagrams.activity.entities.StartNode;
-import uml.diagrams.activity.entities.Transition;
 import uml.diagrams.activity.exceptions.ActivityDiagramRuleException;
 import uml.diagrams.activity.exceptions.ActivityRepresentationException;
 import uml.diagrams.sequence.SequenceDiagramsGroup;
 import uml.diagrams.sequence.exceptions.EmptyOptionalFragmentException;
 import uml.diagrams.sequence.exceptions.MessageFormatException;
 import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
-import uml.diagrams.sequence.fragments.Fragments;
-import uml.diagrams.sequence.fragments.Optional;
-import uml.diagrams.sequence.lifelines.Lifeline;
-import uml.diagrams.sequence.sequencediagrams.ISequenceDiagramElement;
-import uml.diagrams.sequence.sequencediagrams.SequenceDiagram;
-import uml.diagrams.sequence.sequencediagrams.fragments.Fragment;
-import uml.diagrams.sequence.sequencediagrams.fragments.FragmentParent;
-import uml.diagrams.sequence.sequencediagrams.messages.Message;
 
 public class Menu {
 
@@ -44,7 +33,6 @@ public class Menu {
 	private SequenceDiagramsGroup sequenceDiagramGroup;
 	private Scanner sc = new Scanner(System.in);
 	private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-	private SequenceDiagram diagram;
 
 	public void menu() {
 
@@ -72,6 +60,7 @@ public class Menu {
 				printLine("Ocorreu um erro inesperado::" + e.toString());
 				printLine("Retornando ao menu inicial...");
 			}
+			break;
 		}
 		case 3: {
 			try {
@@ -106,8 +95,17 @@ public class Menu {
 			printLine("Já existe um diagrama de atividade com o nome: " + this.activityDiagram.getName());
 
 		addElementToActivityDiagram();
-
 	}
+	
+	private void createSequenceDiagramGroup()
+            throws SequenceDiagramRuleException, EmptyOptionalFragmentException, MessageFormatException {
+        if (sequenceDiagramGroup == null) {
+            sequenceDiagramGroup = new MenuSequenceDiagram().createSequenceDiagramGroup();
+        }
+        else {
+            System.out.println("Ja existe um Grupo de Diagrama de Sequencia");
+        }
+    }
 
 	private void addElementToActivityDiagram() throws ActivityDiagramRuleException {
 		printLine("[1] Adicionar Start Node: ");
@@ -238,17 +236,6 @@ public class Menu {
 		}
 	}
 
-	private void createSequenceDiagramGroup()
-			throws SequenceDiagramRuleException, EmptyOptionalFragmentException, MessageFormatException {
-		if (this.sequenceDiagramGroup == null)
-			this.sequenceDiagramGroup = new SequenceDiagramsGroup();
-		else
-			printLine("Já existe um diagrama de sequência");
-
-		addElementToSequenceDiagram();
-
-	}
-
 	private void validateDiagrams() throws ActivityDiagramRuleException, ActivityRepresentationException {
 		if (this.activityDiagram == null && this.sequenceDiagramGroup == null)
 			throw new Error("Nenhum diagrama adicionado ainda. Crie um diagrama para poder realizar a validação...");
@@ -270,183 +257,6 @@ public class Menu {
 
 		printLine("Diagrama de atividade salvo em:: " + activityPath);
 		printLine("Diagrama de sequência salvo em:: " + sequencePath);
-	}
-
-	private void addElementToSequenceDiagram()
-			throws SequenceDiagramRuleException, EmptyOptionalFragmentException, MessageFormatException {
-		printLine("[1] Adicionar Lifelines: ");
-		printLine("[2] Adicionar/Editar Diagrama de sequência: ");
-		printLine("[3] Adicionar Fragments: ");
-		printLine("[4] Visualizar diagrama");
-		printLine("[5] Retornar ao menu: ");
-
-		int num1 = sc.nextInt();
-
-		switch (num1) {
-			case 1: {
-				System.out.println("Menu: criar LifeLine");
-				System.out.println("Digite o nome do LifeLine: ");
-				Lifeline lifeline = new Lifeline(getInputFromConsole());
-				sequenceDiagramGroup.addLifeline(lifeline);
-				break;
-			}
-			case 2: {
-				printLine("[1] Adicionar Diagrama de sequência: ");
-				printLine("[2] Editar Diagrama de sequência: ");
-				this.diagram = null;
-				
-				int num2 = sc.nextInt();
-				
-				if (num2 == 1) {
-					printLine("Menu: criar Diagrama de Sequencia");
-					printLine("Digite o nome do Diagrama de Sequência:");
-					
-					String name = getInputFromConsole();
-					
-					printLine("Digite a condição de guarda (true or false):");
-					
-					String guard = getInputFromConsole();
-					
-					boolean choice = guard.equals("true");
-					
-					SequenceDiagram tempDiagram = new SequenceDiagram(name, choice);
-					
-					this.diagram = tempDiagram;
-					
-					sequenceDiagramGroup.addSequenceDiagram(tempDiagram);
-				}
-				else if (num2 == 2) {
-					printLine("Escolha o diagrama de sequência (por índice): ");
-					int i = 0;
-					for (SequenceDiagram diag: sequenceDiagramGroup.getSequenceDiagrams()) {
-						printLine("[" + i++ + "] " + diag.getName());
-					}
-					
-					this.diagram = sequenceDiagramGroup.getSequenceDiagrams().get(sc.nextInt());
-				}
-				else {
-					printLine("Opção inválida. Retornando ao menu...");
-					menu();
-				}
-				
-				handle2Diagrama();
-				break;
-			}
-			case 3: {
-				printLine("Insira o nome do fragment");
-				String name = getInputFromConsole();
-				
-				printLine("Escolha o diagrama de sequência (por índice): ");
-				int i = 0;
-				for (SequenceDiagram diag: sequenceDiagramGroup.getSequenceDiagrams()) {
-					printLine("[" + i++ + "] " + diag.getName());
-				}
-				
-				SequenceDiagram tempDiagram = sequenceDiagramGroup.getSequenceDiagrams().get(sc.nextInt());
-				
-				sequenceDiagramGroup.getOptionals().addOptional(new Optional(new Fragment(name), tempDiagram));
-				
-				break;
-			}
-			case 4: {
-				printLine(this.sequenceDiagramGroup.toString().replaceAll("(?<!\\/)><", ">\n<").replaceAll("/><", "/>\n<"));
-			}
-			case 5: {
-				menu();
-			}
-			default: {
-				printLine("Opção inválida:: " + num1);
-				menu();
-			}
-		}
-		addElementToSequenceDiagram();
-	}
-
-	private void handle2Diagrama()
-			throws SequenceDiagramRuleException, EmptyOptionalFragmentException, MessageFormatException {
-		System.out.println("Menu: criar elementos de Diagrama de Sequencia (diagrama atual ::" + this.diagram.getName() + ")::");
-		System.out.println("[1] Criar Mensagem");
-		System.out.println("[2] Criar Fragmento");
-		System.out.println("[3] Criar Optional");
-		System.out.println("[4] Voltar ao menu anterior");
-
-		Fragment fragmento = new Fragment("default");
-
-		int num1 = sc.nextInt();
-		switch (num1) {
-			case 1: {
-				System.out.println("Insira o nome da mensagem");
-				String name1 = getInputFromConsole();
-				System.out.println("Insira o valor da probablilidade");
-				Float prob = sc.nextFloat();
-
-				System.out.println("Insira o Lifeline de Origem");
-
-				Lifeline source = getLifeline();
-
-				System.out.println("Insira o Lifeline de Destino");
-
-				Lifeline target = getLifeline();
-
-				Message message = new Message(name1, prob, source, target);
-				diagram.addElement(message);
-				break;
-			}
-			case 2: {
-				System.out.println("Insira o nome do Fragmento");
-				String name1 = getInputFromConsole();
-				fragmento.setName(name1);
-				diagram.addElement(fragmento);
-				break;
-			}
-			case 3: {
-				System.out.println("Menu: criar Optional");
-				List<SequenceDiagram> sequenceDiagrams = sequenceDiagramGroup.getSequenceDiagrams();
-				List<FragmentParent> fragmentParents = new ArrayList<>();
-				for (SequenceDiagram seq : sequenceDiagrams) {
-					List<ISequenceDiagramElement> elements = seq.getElements();
-					for (ISequenceDiagramElement element : elements) {
-						if (element instanceof Fragment) {
-							fragmentParents.add(new FragmentParent((Fragment) element, seq));
-						}
-					}
-				}
-				if (fragmentParents.isEmpty()) {
-					throw new IllegalArgumentException("Nao ha nenhum fragment cadastrado.");
-				}
-	
-				System.out.println("Os fragmentos criados se encontram na lista abaixo: ");
-	
-				for (int i = 0; i < fragmentParents.size(); i++) {
-					System.out.printf("Fragment [%d] = \n%s\n\n", i, fragmentParents.get(i));
-				}
-	
-				System.out.print("Para selecionar o fragmento desejado digite o indice do fragmento desejado: ");
-	
-				FragmentParent chosenFragment = fragmentParents.get(sc.nextInt());
-				Optional optional = new Optional(chosenFragment.getFragment(), chosenFragment.getRepresentedBy());
-				Fragments fragments = new Fragments();
-				break;
-			}
-			case 4: {
-				addElementToSequenceDiagram();
-			}
-			default: {
-				printLine("Opção inválida:: " + num1);
-				menu();			
-			}
-		}
-		
-		handle2Diagrama();
-	}
-	
-	private Lifeline getLifeline() {
-		printLine("Escola a lifeline (por índice):");
-		int i = 0;
-		for (Lifeline lifeline: sequenceDiagramGroup.getLifelines().getLifelines()) {
-			printLine("[" + i++ + "] " + lifeline.getName());
-		}
-		return sequenceDiagramGroup.getLifelines().getLifelines().get(sc.nextInt());
 	}
 
 	private void printLine(String text) {
