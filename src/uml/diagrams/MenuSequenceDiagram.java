@@ -50,7 +50,7 @@ public class MenuSequenceDiagram {
 	
 	public static void addElementToSequenceDiagram() throws SequenceDiagramRuleException, EmptyOptionalFragmentException, MessageFormatException {
 		System.out.println("[1] Adicionar Lifelines: ");
-		System.out.println("[2] Adicionar Diagrama de sequência: ");
+		System.out.println("[2] Adicionar Diagrama de sequï¿½ncia: ");
 		System.out.println("[3] Adicionar Fragments: ");
 		
 		int num1 = Integer.parseInt(sc.nextLine());
@@ -68,9 +68,9 @@ public class MenuSequenceDiagram {
 		case 2: {
 			createSequenceDiagram();
 			System.out.println("Menu: criar Diagrama de Sequencia");
-			System.out.println("Digite o nome do Diagrama de Sequência:");
+			System.out.println("Digite o nome do Diagrama de Sequï¿½ncia:");
 			String name = sc.nextLine();
-			System.out.println("Digite a condição de guarda (true or false):");
+			System.out.println("Digite a condiï¿½ï¿½o de guarda (true or false):");
 			String guard = sc.nextLine();
 			
 			if(guard.equals("true")) {
