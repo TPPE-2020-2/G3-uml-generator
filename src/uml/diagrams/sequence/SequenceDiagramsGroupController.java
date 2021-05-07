@@ -1,8 +1,7 @@
-package uml.diagrams;
+package uml.diagrams.sequence;
 
 import java.util.List;
 
-import uml.diagrams.sequence.SequenceDiagramsGroup;
 import uml.diagrams.sequence.exceptions.EmptyOptionalFragmentException;
 import uml.diagrams.sequence.exceptions.SequenceDiagramRuleException;
 import uml.diagrams.sequence.fragments.Optional;
@@ -12,11 +11,11 @@ import uml.diagrams.sequence.sequencediagrams.SequenceDiagram;
 public class SequenceDiagramsGroupController {
     private SequenceDiagramsGroup sequenceDiagramGroup;
 
-    SequenceDiagramsGroupController() {
+    public SequenceDiagramsGroupController() {
         sequenceDiagramGroup = new SequenceDiagramsGroup();
     }
 
-    SequenceDiagram addSequenceDiagram(String name, Boolean guard)
+    public SequenceDiagram addSequenceDiagram(String name, Boolean guard)
             throws SequenceDiagramRuleException {
         SequenceDiagram diagram = createDefaultSequenceDiagram();
 
@@ -28,18 +27,18 @@ public class SequenceDiagramsGroupController {
         return diagram;
     }
 
-    SequenceDiagramsGroup getGeneratedDiagram() {
+    public SequenceDiagramsGroup getGeneratedDiagram() {
         return sequenceDiagramGroup;
     }
     
-    String getGeneratedDiagramFormatted() {
+    public String getGeneratedDiagramFormatted() {
         return sequenceDiagramGroup
                 .toString()
                 .replaceAll("(?<!\\/)><", ">\n<")
                 .replaceAll("/><", "/>\n<");
     }
 
-    SequenceDiagram getSequenceDiagramByIndex(int index) {
+    public SequenceDiagram getSequenceDiagramByIndex(int index) {
         try {
             return sequenceDiagramGroup.getSequenceDiagrams().get(index);
         } catch (IndexOutOfBoundsException e) {
@@ -47,20 +46,20 @@ public class SequenceDiagramsGroupController {
         }
     }
 
-    List<SequenceDiagram> getSequenceDiagrams() {
+    public List<SequenceDiagram> getSequenceDiagrams() {
         return sequenceDiagramGroup.getSequenceDiagrams();
     }
 
-    void addLifeline(String name) throws SequenceDiagramRuleException {
+    public void addLifeline(String name) throws SequenceDiagramRuleException {
         Lifeline lifeline = new Lifeline(name);
         sequenceDiagramGroup.addLifeline(lifeline);
     }
     
-    List<Lifeline> getLifelines() {
+    public List<Lifeline> getLifelines() {
         return sequenceDiagramGroup.getLifelines().getLifelines();
     }
     
-    Lifeline getLifelineByIndex(int index) {
+    public Lifeline getLifelineByIndex(int index) {
         try {
             return sequenceDiagramGroup.getLifelines().getLifelines().get(index);
         } catch (IndexOutOfBoundsException e) {
@@ -68,17 +67,17 @@ public class SequenceDiagramsGroupController {
         }
     }
 
-    void addOptional(String name, SequenceDiagram sequenceDiagram)
+    public void addOptional(String name, SequenceDiagram sequenceDiagram)
             throws SequenceDiagramRuleException, EmptyOptionalFragmentException {
         Optional optional = new Optional(name, sequenceDiagram);
         sequenceDiagramGroup.addOptional(optional);
     }
     
-    List<Optional> getOptionals() {
+    public List<Optional> getOptionals() {
         return sequenceDiagramGroup.getFragments().getOptionals();
     }
     
-    Optional getOptionalByIndex(int index) {
+    public Optional getOptionalByIndex(int index) {
         try {            
             return sequenceDiagramGroup.getFragments().getOptionals().get(index);
         } catch (IndexOutOfBoundsException e) {
