@@ -22,6 +22,7 @@ import uml.diagrams.activity.entities.MergeNode;
 import uml.diagrams.activity.entities.StartNode;
 import uml.diagrams.activity.exceptions.ActivityDiagramRuleException;
 import uml.diagrams.activity.exceptions.ActivityRepresentationException;
+import uml.diagrams.menu.sequencediagram.MenuSequenceDiagramsGroup;
 import uml.diagrams.sequence.SequenceDiagramsGroup;
 import uml.diagrams.sequence.exceptions.EmptyOptionalFragmentException;
 import uml.diagrams.sequence.exceptions.MessageFormatException;
@@ -100,7 +101,7 @@ public class Menu {
 	private void createSequenceDiagramGroup()
             throws SequenceDiagramRuleException, EmptyOptionalFragmentException, MessageFormatException {
         if (sequenceDiagramGroup == null) {
-            sequenceDiagramGroup = new MenuSequenceDiagram().createSequenceDiagramGroup();
+            sequenceDiagramGroup = new MenuSequenceDiagramsGroup().createSequenceDiagramGroup();
         }
         else {
             System.out.println("Ja existe um Grupo de Diagrama de Sequencia");
