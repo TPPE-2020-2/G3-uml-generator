@@ -18,3 +18,21 @@ Obs.: Quando o menu solicitar probabilidades (ex.: Transition ou Optional) utili
 
 > Em inglês: digite "0.5";
 > Em português: Ao invés de colocar o valor 0.5, digite "0,5";
+
+## 1. Refatorações
+
+### 1.1 Mover Método ou Mover Atributo
+
+__Objeto de Refatoração:__ Classe MenuSequenceDiagram
+
+__Alterações:__
+
+* Migração do arquivo uml.diagrams.MenuSequenceDiagramsGroup.java uml.diagrams.menu.sequencediagram.MenuSequenceDiagramsGroup.java
+* Extração da etapa de adicionar elementos no momento da criação ou edição de um diagrama de sequência interno para o menu separado uml.diagrams.menu.sequencediagram.MenuAddItemsSequenceDiagram.java
+* Extração de métodos específicos de gerenciamento do agrupador de diagramas de sequência para o controller uml.diagrams.sequence.SequenceDiagramsGroupController
+
+### 1.2 Extrair Método
+
+### 1.3 Substituir Método por Objeto-Método
+
+### 1.4 Substituir Conditional por Polimorfismo
