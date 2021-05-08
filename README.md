@@ -23,6 +23,8 @@ Obs.: Quando o menu solicitar probabilidades (ex.: Transition ou Optional) utili
 
 ### 1.1 Mover Método ou Mover Atributo
 
+### 1.2 Extrair Método
+
 __Objeto de Refatoração:__ Classe MenuSequenceDiagram
 
 __Alterações:__
@@ -30,8 +32,6 @@ __Alterações:__
 * Migração do arquivo uml.diagrams.MenuSequenceDiagramsGroup.java uml.diagrams.menu.sequencediagram.MenuSequenceDiagramsGroup.java
 * Extração da etapa de adicionar elementos no momento da criação ou edição de um diagrama de sequência interno para o menu separado uml.diagrams.menu.sequencediagram.MenuAddItemsSequenceDiagram.java
 * Extração de métodos específicos de gerenciamento do agrupador de diagramas de sequência para o controller uml.diagrams.sequence.SequenceDiagramsGroupController
-
-### 1.2 Extrair Método
 
 ### 1.3 Substituir Método por Objeto-Método
 
