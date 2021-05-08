@@ -35,4 +35,12 @@ __Alterações:__
 
 ### 1.3 Substituir Método por Objeto-Método
 
+__Objeto de Refatoração:__ Classe ActivityDiagramElements::toString
+
+__Alterações:__
+
+* Criação da classe uml.diagrams.activity.ActivityDiagramElementsToStringGenerator
+* Extração da lógica de ActivityDiagramElements::toString para ActivityDiagramElementsToStringGenerator::compute
+* Substituição do método ActivityDiagramElements::toString pelo objeto método ActivityDiagramElementsToStringGenerator::compute
+
 ### 1.4 Substituir Conditional por Polimorfismo
