@@ -138,29 +138,6 @@ public class ActivityDiagramElements {
 	
 	@Override
 	public String toString() {
-		String activityString = "";
-		String mergeNodeString = "";
-		String decisionNodeString = "";
-		String finalNodeString = "";
-		
-		for (ActivityNode activityNode: activityNodesList)
-			activityString += activityNode.toString();
-		
-		for (DecisionNode decisionNode: decisionNodeList)
-			decisionNodeString += decisionNode.toString();
-		
-		for (MergeNode mergeNode: mergeNodeList)
-			mergeNodeString += mergeNode.toString();
-		
-		for (FinalNode finalNode: finalNodeList)
-			finalNodeString += finalNode.toString();
-		
-		return "<ActivityDiagramElements>" +
-				startNode.toString() + 
-				activityString +
-				decisionNodeString +
-				mergeNodeString +
-				finalNodeString +
-			 "</ActivityDiagramElements>";
+		return new ActivityDiagramElementsToStringGenerator(this).compute();
 	}
 }
