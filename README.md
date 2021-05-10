@@ -23,6 +23,12 @@ Obs.: Quando o menu solicitar probabilidades (ex.: Transition ou Optional) utili
 
 ### 1.1 Mover Método ou Mover Atributo
 
+__Objeto de Refatoração:__ Arquivo Menu.java
+
+__Alterações:__
+
+A refatoração foi aplica nos métodos validateDiagrams(), generateXML(), createSequenceDiagramGroup(), createActivityDiagram(), do arquivo Menu.java. Foi criada uma nova classe chamada ValidateDiagrams que suporta todas essas operações relacionadas aos diagramas e não ao menu, também foram movidos os atributos activityDiagram e sequenceDiagramGroup. As operações mantidas no menu são operações referentes a exibição do menu para os usuários.
+
 ### 1.2 Extrair Método
 
 __Objeto de Refatoração:__ Classe MenuSequenceDiagram
