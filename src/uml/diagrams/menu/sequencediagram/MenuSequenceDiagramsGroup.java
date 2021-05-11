@@ -43,29 +43,7 @@ public class MenuSequenceDiagramsGroup {
 
         int num1 = sc.nextInt();
 
-        switch (num1) {
-        case 1: {
-            addLifeline();
-            break;
-        }
-        case 2: {
-            addOrReplaceSequenceDiagram();
-            break;
-        }
-        case 3: {
-            addOptional();
-            break;
-        }
-        case 4: {
-            showDiagram();
-            break;
-        }
-        case 5: {
-            return;
-        }
-        default:
-            throw new IllegalArgumentException("Unexpected value: " + num1);
-        }
+        addComponent(num1);
 
         menuAddComponentToSequenceDiagramGroup();
     }
@@ -78,7 +56,7 @@ public class MenuSequenceDiagramsGroup {
         sequenceDiagramsGroupController.addLifeline(name);
     }
 
-    private void addOrReplaceSequenceDiagram()
+    private void editeSequenceDiagram()
             throws SequenceDiagramRuleException, EmptyOptionalFragmentException, MessageFormatException {
         SequenceDiagram diagram;
         int option;
@@ -101,6 +79,28 @@ public class MenuSequenceDiagramsGroup {
             printLine("Diagrama de sequência não encontrado. Retornando ao menu...");
             return;
         }
+    }
+    
+    private void addComponent(int option) 
+    		throws SequenceDiagramRuleException, EmptyOptionalFragmentException, MessageFormatException {
+    	if (option == 1) {
+    		addLifeline();
+    	}
+    	else if (option == 2){
+    		editeSequenceDiagram();
+    	}
+    	else if (option == 3) {
+    		addOptional();
+    	}
+    	else if (option == 4) {
+    		showDiagram();
+    	}
+    	else if (option == 5) {
+    		printLine("Retornando...");
+    	}
+    	else {
+    		throw new IllegalArgumentException("Unexpected value: " + option);
+    	}
     }
 
     private SequenceDiagram addSequenceDiagram() throws SequenceDiagramRuleException {
