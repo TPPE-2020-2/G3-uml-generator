@@ -50,3 +50,10 @@ __Alterações:__
 * Substituição do método ActivityDiagramElements::toString pelo objeto método ActivityDiagramElementsToStringGenerator::compute
 
 ### 1.4 Substituir Conditional por Polimorfismo
+__Objetivo de Refatoração:__ Classe MenuSequenceDiagramsGroup
+
+__Alterações:__
+
+* Migração do switch case da função uml.diagrams.menu.sequencediagram.menuAddComponentToSequenceDiagramGroup()
+* Criação de uma nova função uml.diagrams.menu.sequencediagram.addComponent()
+* Substituição do switch case pela função.
