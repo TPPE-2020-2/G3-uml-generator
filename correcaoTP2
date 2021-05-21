@@ -1,0 +1,25 @@
+Observações:
+------------
+
+A refatoração `Mover método` não foi aplicada, mas sim a refatoração `Extrair
+classe`. Contudo a refatoração Extrair Classe contempla em sua estrutura a
+utilização da refatoração `Mover método`
+
+A refatoração `Substituir método por objeto-método` não manteve os elementos da classe `ActivityDiagram` na classe de origem e as acessou via referência _source_. 
+
+A refatoração `Substituir condicional por polimorfismo` implica na existência de um método polimórfico, definido para cada uma das subclasses. Esse método não foi considerado. Os efeitos da refatoração proposta foi trocar o if-else de lugar, apenas.
+
+Critérios de avaliação:
+-----------------------
+
+Ref. 1 - mover método ou mover atributo (20 pontos): OK, apesar de aplicar
+                         `Extrair Classe` - 20 pontos.
+
+Ref. 2 - extrair método (20 pontos): OK - 20 pontos.
+
+Ref. 3 - substituir método por objeto-método (30 pontos): +/-, 24 pontos.
+
+Ref. 4 - substituir condicional por polimorfismo (30 pontos): NOk - 0 pontos. 
+
+
+NOTA FINAL: 64 pontos.
